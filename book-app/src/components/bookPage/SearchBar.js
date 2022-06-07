@@ -1,40 +1,61 @@
+import { Button } from "@mui/material";
+import { TextField } from "@mui/material";
 import React from "react";
 import { useState } from "react";
+import { useEffect } from "react";
 import { useRef, useContext } from "react";
 import { AuthorContext } from "../../contexts/authorContext";
 
 function SearchBar() {
-  const authorRef = useRef(null);
-  const titles = [];
-  const { author, setAuthor } = useContext(AuthorContext);
+  const [titles, setTitles] = useState([]);
+  const [keys, setKeys] = useState([]);
+  const [isbn, setIsbn] = useState([]);
+  const { first, setFirst, last, setLast } = useContext(AuthorContext);
 
   const handleClick = () => {
-    setAuthor(authorRef.current.value);
+    const bookTitles = [];
+    const urlKeys = [];
+    const bookDesc = [];
 
-    fetch(`http://openlibrary.org/search.json?author=${author}`)
+    fetch(`http://openlibrary.org/search.json?author=${first}+${last}`)
       .then((res) => res.json())
       .then((data) => {
         data.docs.forEach((e) => {
-          titles.push(e.title);
+          bookTitles.push(e.title);
+          urlKeys.push(e.key + ".json");
         });
-        console.log(titles);
-      })
-      .catch((err) => console.log(err));
-
-      titles && titles.map((val, key) => {
-          return (
-            <p>{key + 1}. {val}</p>
-          )
-      })
+        setTitles(bookTitles);
+        setKeys(urlKeys);
+    });
   };
 
   return (
     <div>
-      <input type="text" placeholder="first name" />
-      <input type="text" placeholder="last name" ref={authorRef} />
       <p>
-        <input type="submit" onClick={handleClick} />
+        <TextField
+          id="filled-basic"
+          label="First Name"
+          variant="filled"
+          onChange={(e) => setFirst(e.target.value)}
+        />
       </p>
+      <p>
+        <TextField
+          id="filled-basic"
+          label="Last Name"
+          variant="filled"
+          onChange={(e) => setLast(e.target.value)}
+        />
+      </p>
+      <p>
+        <Button type="submit" variant="contained" onClick={handleClick}>
+          Submit
+        </Button>
+      </p>
+        <h1>Books</h1>
+        {titles.map((val, key) => {
+          return <p>{val}</p>;
+        })}
     </div>
   );
 }
