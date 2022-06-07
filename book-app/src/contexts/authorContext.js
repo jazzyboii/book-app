@@ -2,9 +2,17 @@ import React, { createContext, useState } from "react";
 const AuthorContext = createContext("");
 
 function AuthorContextProvider({ children }) {
-  const [author, setAuthor] = useState("");
-  const obj = { author: author, setAuthor: setAuthor };
-  return <AuthorContext.Provider value={obj}>{children}</AuthorContext.Provider>;
+  const [first, setFirst] = useState("");
+  const [last, setLast] = useState("");
+  const obj = {
+    first: first,
+    setFirst: setFirst,
+    last: last,
+    setLast: setLast,
+  };
+  return (
+    <AuthorContext.Provider value={obj}>{children}</AuthorContext.Provider>
+  );
 }
 
 export default AuthorContextProvider;
