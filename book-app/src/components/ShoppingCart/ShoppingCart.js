@@ -10,13 +10,15 @@ import { ShoppingContext } from "../../contexts/shoppingContext";
 // import BookCard from "./BookCard";
 
 export default function ShoppingCart() {
-    const {shoppingList} = useContext(ShoppingContext);
+    const shoppingList = useContext(ShoppingContext);
     const [cart, setCart] = useState([]);
     const [deleteId, setDeleteId] = useState();
     const [wantsToDelete, setWantsToDelete] = useState(false);
     const [reloadData, setReloadData] = useState(true);
 
-    console.log("shopping list: ", shoppingList)
+    console.log("shopping list: ", shoppingList.cart)
+   
+   
     useEffect( () => {
             if (reloadData) {
                 fetch("http://localhost:9000/shopping/info")
