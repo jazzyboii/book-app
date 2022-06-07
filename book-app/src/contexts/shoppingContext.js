@@ -4,16 +4,6 @@ const ShoppingContext = createContext();
 
 const ShoppingProvider = ({children}) => {
     const [cart, setCart] = useState([
-        {
-          title: 'Fantastic Mr. Fox',
-          isbn: "9780140328721",
-          amount: 2
-        },
-        {
-          title: 'The Lord of The Rings',
-          isbn: "0261102303",
-          amount: 3
-        },
       ]
     );
 

@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext} from "react";
 import { Card, CardActionArea, CardContent, CardMedia, CardActions, Typography, Box, Button } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -6,31 +6,45 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { ShoppingContext } from "../../contexts/shoppingContext";
+import PriceCard from "./PriceCard";
 // import TextField from '@mui/material/TextField';
 // import BookCard from "./BookCard";
 
+
 export default function ShoppingCart() {
-    const shoppingList = useContext(ShoppingContext);
-    const [cart, setCart] = useState([]);
+    const {cart, setCart} = useContext(ShoppingContext);
+    const [array, setArray] = useState([]);
     const [deleteId, setDeleteId] = useState();
     const [wantsToDelete, setWantsToDelete] = useState(false);
     const [reloadData, setReloadData] = useState(true);
 
-    console.log("shopping list: ", shoppingList.cart)
-   
+
+    console.log("shopping list: ", cart)
    
     useEffect( () => {
-            if (reloadData) {
-                fetch("http://localhost:9000/shopping/info")
-                .then((res) => res.json())
-                .then((text) => {
-                    console.log("ShoppingCard: ", text)
-                    setCart(text.result)
-                    })
-                    .then(setReloadData(false))
-                .catch((err) => console.log(err))
-                }
-        }, [reloadData])
+        if(reloadData) {
+            setArray(cart);
+            setReloadData(false);
+            // for (let i = 0; i<array.length; i++) {
+            //     if (array[i].amount === 0) {
+            //         deleteBook(array[i]);
+            //     }
+            // }
+        }
+    }, [reloadData, cart, array])
+   
+    // useEffect( () => {
+    //         if (reloadData) {
+    //             fetch("http://localhost:9000/shopping/info")
+    //             .then((res) => res.json())
+    //             .then((text) => {
+    //                 console.log("ShoppingCart: ", text)
+    //                 setCart(text.result)
+    //                 })
+    //                 .then(setReloadData(false))
+    //             .catch((err) => console.log(err))
+    //             }
+    //     }, [reloadData])
 
     function handleOpen() {
         setWantsToDelete(true);
@@ -39,24 +53,29 @@ export default function ShoppingCart() {
     function handleClose() {
         setWantsToDelete(false);
     }
-
     
     function deleteBook(id) {
         setWantsToDelete(false);
-        fetch("http://localhost:9000/shopping/delete/" + id, {
-            method: 'DELETE',
-        })
-        .then(setReloadData(true))
-        .catch((err) => console.log(err))
+        const removeIndex = array.indexOf(id);
+        array.splice(removeIndex, 1);
+        setCart(array);
+        setReloadData(true);
+    }
+
+    function editAmount(id, addition) {
+        const editIndex = array.indexOf(id);
+        // console.log(editIndex);
+        array[editIndex].amount = array[editIndex].amount + addition;
+        setCart(array);
+        setReloadData(true);
     }
 
     return (
         <>
             <p>you are at the shopping cart</p>
 
-            {cart && cart.map( (book) => 
-            <div key={book.id}>
-
+            {array && array.map( (book) => 
+            <div key={book.title}>
                 <div className="topSong" key={book.id}>
                     <Card raised={true} sx={{ display: 'flex', width:"50%" }} className="bookCard" >
                         <CardActionArea target="_blank"> 
@@ -79,11 +98,11 @@ export default function ShoppingCart() {
                                 </CardContent>
 
                                 <CardActions>
-                                    <Button size="small" >Add a Copy</Button>
-                                    {book.amount>1?<Button>Remove a copy</Button>:<></>}
+                                    <Button size="small" onClick={() => {editAmount(book, 1)}}>Add a Copy</Button>
+                                    {book.amount>1?<Button size="small" onClick={() => {editAmount(book, -1)}}>Remove a copy</Button>:<></>}
                                     <Button size="small" onClick={() => {
                                         handleOpen()
-                                        setDeleteId(book.id)
+                                        setDeleteId(book)
                                         }}> Delete </Button>
                                 </CardActions>
                             </Box>
@@ -92,6 +111,8 @@ export default function ShoppingCart() {
                 </div>
             </div>
             )}
+
+            <PriceCard data={array}/>
 
             <Dialog
                 open={wantsToDelete}
@@ -104,8 +125,7 @@ export default function ShoppingCart() {
                 </DialogTitle>
                 <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    Let Google help apps determine location. This means sending anonymous
-                    location data to Google, even when no apps are running.
+                    Click Delete to remove this book from your cart. Otherwise, click Cancel.
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -118,8 +138,3 @@ export default function ShoppingCart() {
         </>
     );
 }
-
-// <div key={book.id}>
-//                 <p >{book.title}</p>
-//                 <BookCard data = {book}/>
-//             </div>)
