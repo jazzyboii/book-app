@@ -1,40 +1,66 @@
+import { Button } from "@mui/material";
+import { TextField } from "@mui/material";
 import React from "react";
 import { useState } from "react";
+import { useEffect } from "react";
 import { useRef, useContext } from "react";
 import { AuthorContext } from "../../contexts/authorContext";
 
 function SearchBar() {
-  const firstRef = useRef(null);
-  const lastRef = useRef(null);
   const titles = [];
   const keys = [];
   const { first, setFirst, last, setLast } = useContext(AuthorContext);
 
   const handleClick = () => {
-    setFirst(firstRef.current.value);
-    setLast(lastRef.current.value);
-
     console.log(first);
     console.log(last);
 
     fetch(`http://openlibrary.org/search.json?author=${first}+${last}`)
       .then((res) => res.json())
       .then((data) => {
-          console.log(data)
         data.docs.forEach((e) => {
-          titles.push(e.title)
-          keys.push(e.key+'.json')
+          titles.push(e.title);
+          keys.push(e.key + ".json");
         });
+        console.log(titles);
       });
   };
 
+  //   useEffect(() => {
+  //     titles.map((item) => {
+  //       return <p key={item}>{item}</p>;
+  //     });
+  //   }, [first, last]);
+
   return (
     <div>
-      <input type="text" placeholder="first name" ref={firstRef} />
-      <input type="text" placeholder="last name" ref={lastRef} />
       <p>
-        <input type="submit" onClick={handleClick} />
+        <TextField
+          id="filled-basic"
+          label="First Name"
+          variant="filled"
+          onChange={(e) => setFirst(e.target.value)}
+        />
       </p>
+      <p>
+        <TextField
+          id="filled-basic"
+          label="Last Name"
+          variant="filled"
+          onChange={(e) => setLast(e.target.value)}
+        />
+      </p>
+      <p>
+        <Button type="submit" variant="contained" onClick={handleClick}>
+          Submit
+        </Button>
+      </p>
+      <div className="books">
+        <h1>Books</h1>
+        {titles.map((val, key) => {
+          return <p>{val}</p>;
+        })}
+      </div>
     </div>
   );
 }
