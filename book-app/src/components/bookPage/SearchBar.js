@@ -7,30 +7,27 @@ import { useRef, useContext } from "react";
 import { AuthorContext } from "../../contexts/authorContext";
 
 function SearchBar() {
-  const titles = [];
-  const keys = [];
+  const [titles, setTitles] = useState([]);
+  const [keys, setKeys] = useState([]);
+  const [isbn, setIsbn] = useState([]);
   const { first, setFirst, last, setLast } = useContext(AuthorContext);
 
   const handleClick = () => {
-    console.log(first);
-    console.log(last);
+    const bookTitles = [];
+    const urlKeys = [];
+    const bookDesc = [];
 
     fetch(`http://openlibrary.org/search.json?author=${first}+${last}`)
       .then((res) => res.json())
       .then((data) => {
         data.docs.forEach((e) => {
-          titles.push(e.title);
-          keys.push(e.key + ".json");
+          bookTitles.push(e.title);
+          urlKeys.push(e.key + ".json");
         });
-        console.log(titles);
-      });
+        setTitles(bookTitles);
+        setKeys(urlKeys);
+    });
   };
-
-  //   useEffect(() => {
-  //     titles.map((item) => {
-  //       return <p key={item}>{item}</p>;
-  //     });
-  //   }, [first, last]);
 
   return (
     <div>
@@ -55,12 +52,10 @@ function SearchBar() {
           Submit
         </Button>
       </p>
-      <div className="books">
         <h1>Books</h1>
         {titles.map((val, key) => {
           return <p>{val}</p>;
         })}
-      </div>
     </div>
   );
 }
