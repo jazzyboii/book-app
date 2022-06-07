@@ -1,20 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Card, CardActionArea, CardContent, CardMedia, CardActions, Typography, Box, Button } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { ShoppingContext } from "../../contexts/shoppingContext";
 // import TextField from '@mui/material/TextField';
 // import BookCard from "./BookCard";
 
 export default function ShoppingCart() {
+    const shoppingList = useContext(ShoppingContext);
     const [cart, setCart] = useState([]);
     const [deleteId, setDeleteId] = useState();
     const [wantsToDelete, setWantsToDelete] = useState(false);
     const [reloadData, setReloadData] = useState(true);
 
-
+    console.log("shopping list: ", shoppingList.cart)
+   
+   
     useEffect( () => {
             if (reloadData) {
                 fetch("http://localhost:9000/shopping/info")
