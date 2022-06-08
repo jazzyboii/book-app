@@ -48,7 +48,7 @@ export default function OrderBreakdown(props) {
         setPostTotal(varPostTotal.toFixed(2))
         console.log(postTotal, " postotal is a ", typeof(postTotal))
     }, [props.amount])
-//https://github.com/jasonpau/react-shipping-calculator/blob/master/src/main.js
+
     function placeOrder() {
         setOrderPlaced(true);
         setOpenDialog(true);
