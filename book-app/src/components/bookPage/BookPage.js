@@ -5,7 +5,6 @@ import { AuthorContext } from "../../contexts/authorContext";
 import SearchBar from "./SearchBar";
 
 function BookPage() {
-  const { author } = useContext(AuthorContext);
 
   return (
     <div>
