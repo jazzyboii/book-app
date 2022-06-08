@@ -11,22 +11,23 @@ import { ShoppingContext } from './contexts/shoppingContext';
 import { useContext, useEffect } from 'react'
 
 function App() {
-  const { setCart } = useContext(ShoppingContext);
+  const {cart, setCart} = useContext(ShoppingContext);
 
-  useEffect(() => {
-    setCart([
-      {
-        title: "Fantastic Mr. Fox",
-        isbn: "9780140328721",
-        amount: 3,
-      },
-      {
-        title: "The Lord of The Rings",
-        isbn: "0261102303",
-        amount: 1,
-      },
-    ]); // eslint-disable-next-line
-  }, []);
+  useEffect( () => {
+    let array = [];
+    array = cart;
+    array.push({
+      title: 'Fantastic Mr. Fox',
+      isbn: "9780140328721",
+      amount: 3
+    });
+    array.push({
+      title: 'The Lord of The Rings',
+      isbn: "0261102303",
+      amount: 1
+    });
+    setCart(array);
+  }, [])
 
   return (
     <div className="App">
