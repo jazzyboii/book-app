@@ -10,6 +10,10 @@ function App() {
     <div className="App">
       <AuthorContextProvider>
         <HomePage/>
+        <Routes>
+          <Route path="/shopping-cart" element={<ShoppingCart />} />
+          <Route path="/book-info" element={<BookPage />} />
+        </Routes>
       </AuthorContextProvider>
     </div>
   );
