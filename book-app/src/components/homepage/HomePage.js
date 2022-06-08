@@ -2,66 +2,16 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import { AppBar,Box,Toolbar,IconButton,Typography,InputBase } from '@mui/material'
 import { MenuItem,Menu } from '@mui/material'
-import { Checkbox } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import MailIcon from '@mui/icons-material/Mail';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
-import Select from 'react-select';
+import { useNavigate } from "react-router-dom";
 
-const aquaticCreatures = [
-  { label: 'Shark', value: 'Shark' },
-  { label: 'Dolphin', value: 'Dolphin' },
-  { label: 'Whale', value: 'Whale' },
-  { label: 'Octopus', value: 'Octopus' },
-  { label: 'Crab', value: 'Crab' },
-  { label: 'Lobster', value: 'Lobster' },
-];
 
 const pages = ['Discover', 'Book Page', 'Shopping Cart'];
 
-
-const drawerWidth = 240;
-
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginRight: -drawerWidth,
-    ...(open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginRight: 0,
-    }),
-  }),
-);
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: 'flex-start',
-}));
 
 
 
@@ -81,23 +31,7 @@ const HomePage = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
-  const DrawerHeader = styled('div')(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-start',
-  }));
+  const navigate = useNavigate();
 
 
   const Search = styled('div')(({ theme }) => ({
@@ -227,53 +161,25 @@ const HomePage = () => {
                 />
             </Search>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
+              <Button
+                onClick={() => navigate("/Discover")}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Discover
+              </Button> 
+              <Button
+                  onClick={() => navigate("/book-info")}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
-                  {page}
-                </Button>
-              ))}
-              {/* <Drawer
-                  sx={{
-                    width: drawerWidth,
-                    flexShrink: 0,
-                    '& .MuiDrawer-paper': {
-                      width: drawerWidth,
-                    },
-                  }}
-                  variant="temporary"
-                  anchor="right"
-                  open={open}
+                  Book Page
+              </Button> 
+              <Button
+                  onClick={() =>navigate("/shopping-cart")}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
                 >
-                <DrawerHeader>
-                  <IconButton onClick={handleDrawerClose}>
-                    {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                  </IconButton>
-                </DrawerHeader>
-                <Divider />
-                <List>
-                  {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <Checkbox
-                          value={text}
-                        />
-                    </ListItem>
-                  ))}
-                </List>
-              </Drawer>               */}
+                  Shopping Cart
+              </Button>            
             </Box>
-            {/* <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="end"
-              onClick={handleDrawerOpen}
-              sx={{ ...(open && { display: 'none' }) }}
-            >
-              <FilterAltOutlinedIcon />
-            </IconButton> */}
           </Toolbar>
         </Container>
       </AppBar>
