@@ -29,10 +29,10 @@ export default function OrderBreakdown(props) {
             costPerOz = 2 * shippingMultiplier;
         }
         else if (weightInOz > 32) {
-            costPerOz = 20 * shippingMultiplier;
+            costPerOz = 15 * shippingMultiplier;
         }
         else {
-            costPerOz = 10 * shippingMultiplier;
+            costPerOz = 7 * shippingMultiplier;
         }
 
         const varShippingCosts = costPerOz * weightInOz * 0.01;
