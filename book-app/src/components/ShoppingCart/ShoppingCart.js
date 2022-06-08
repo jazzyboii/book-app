@@ -26,46 +26,32 @@ export default function ShoppingCart() {
   const [wantsToDelete, setWantsToDelete] = useState(false);
   const [reloadData, setReloadData] = useState(true);
 
-    console.log("shopping list: ", cart)
-   
-    useEffect( () => {
-        if(reloadData) {
-            let array = [];
-            array = cart;
-            for (let i = 0; i<array.length; i++) {
-                for (let j = array.length - 1; j>=0; j--) {
-                  if (i === j) {
-                    break;
-                  }
-                  if(array[i].title === array[j].title){
-                      array[i].amount = array[i].amount + array[j].amount;
-                      array.splice(j, 1);
-                  }
-                }
-              }
-            setArray(array);
-            setReloadData(false);
-            // for (let i = 0; i<array.length; i++) {
-            //     if (array[i].amount === 0) {
-            //         deleteBook(array[i]);
-            //     }
-            // }
-        }
-    }, [reloadData, cart, array])
-   
-    // useEffect( () => {
-    //         if (reloadData) {
-    //             fetch("http://localhost:9000/shopping/info")
-    //             .then((res) => res.json())
-    //             .then((text) => {
-    //                 console.log("ShoppingCart: ", text)
-    //                 setCart(text.result)
-    //                 })
-    //                 .then(setReloadData(false))
-    //             .catch((err) => console.log(err))
-    //             }
-    //     }, [reloadData])
   console.log("shopping list: ", cart);
+
+  useEffect(() => {
+    if (reloadData) {
+      setArray(cart);
+      setReloadData(false);
+      // for (let i = 0; i<array.length; i++) {
+      //     if (array[i].amount === 0) {
+      //         deleteBook(array[i]);
+      //     }
+      // }
+    }
+  }, [reloadData, cart, array]);
+
+  // useEffect( () => {
+  //         if (reloadData) {
+  //             fetch("http://localhost:9000/shopping/info")
+  //             .then((res) => res.json())
+  //             .then((text) => {
+  //                 console.log("ShoppingCart: ", text)
+  //                 setCart(text.result)
+  //                 })
+  //                 .then(setReloadData(false))
+  //             .catch((err) => console.log(err))
+  //             }
+  //     }, [reloadData])
 
   function handleOpen() {
     setWantsToDelete(true);
