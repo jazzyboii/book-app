@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom';
 import './paymentPage.css'
 import { makeStyles, } from '@material-ui/core/styles';
 import CreditCardForm from "./CreditCardForm";
+import OrderBreakdown from "./OrderBreakdown";
 
 const useStyles = makeStyles(() => ({
     boxWrapper: {
@@ -25,8 +26,15 @@ export default function PaymentPage() {
     const {cart} = useContext(ShoppingContext);
     const [data, setData] = useState([])
     const [amount, setAmount] = useState(0);
-    const [longitude, setLongitude] = useState();
-    const [latitude, setLatitude] = useState();
+    // const [longitude, setLongitude] = useState();
+    // const [latitude, setLatitude] = useState();
+    const [officialLocation, setOfficialLocation] = useState({
+        longitude: "",
+        latitude: "",
+        streetAddress: "",
+        zipcode: "",
+        city: ""
+    });
     const [deliveryOption, setDeliveryOption] = useState("regular");
 
     const defaultValues ={
@@ -60,15 +68,16 @@ export default function PaymentPage() {
         }
 
     function setPosition(position) {
-            setLongitude(position.coords.longitude);
-            setLatitude(position.coords.latitude);
+            setOfficialLocation({...officialLocation, longitude: position.coords.longitude, latitude: position.coords.latitude})
+            // setLongitude(position.coords.longitude);
+            // setLatitude(position.coords.latitude);
             setDataSubmitted(true);
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formValues);
-        // setFormValues(defaultValues);
+        setOfficialLocation({...officialLocation, streetAddress: formValues.address, zipcode: formValues.zipcode, city: formValues.city})
         setDataSubmitted(true);
     };
 
@@ -234,7 +243,9 @@ export default function PaymentPage() {
 
                 <div className="div5"><Button onClick={goBack}>Go Back</Button></div>
 
-                <div className="div4"><p>Price breakdown</p></div>
+                <div className="div4">
+                    <OrderBreakdown amount={amount} deliveryOption={deliveryOption} location={officialLocation}/>
+                </div>
 
                 <div className="div3"><p>Delivery options</p></div>
             {/* <Button variant="outlined" onClick={goBack} className='goBackButton'> Go Back </Button> */}
