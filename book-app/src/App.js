@@ -9,6 +9,13 @@ import AuthorContextProvider from "./contexts/authorContext";
 import HomePage from "./components/homepage/HomePage";
 import { ShoppingContext } from './contexts/shoppingContext';
 import { useContext, useEffect } from 'react'
+// import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Button } from "@mui/material";
+import AuthorSearch from "./components/bookPage/AuthorSearch";
+import BookSearch from "./components/bookPage/BookSearch";
+import GenreSearch from "./components/bookPage/GenreSearch";
+import BestSellersPage from "./components/BestSellers";
+
 
 function App() {
   const { setCart } = useContext(ShoppingContext);
@@ -37,7 +44,6 @@ function App() {
           {/* <Route path="/book-info" element={<BookPage />} /> */}
           <Route path="/payment-page" element={<PaymentPage />} />
         </Routes>
-        
       </AuthorContextProvider>
 
     </div>
