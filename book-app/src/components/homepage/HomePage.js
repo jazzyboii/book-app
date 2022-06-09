@@ -162,16 +162,28 @@ const HomePage = () => {
             </Search>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button
-                onClick={() => navigate("/Discover")}
+                onClick={() => navigate("/discover")}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Discover
               </Button> 
               <Button
-                  onClick={() => navigate("/book-info")}
+                  onClick={() => navigate("/author-search")}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
-                  Book Page
+                  Search by Author
+              </Button> 
+              <Button
+                  onClick={() => navigate("/title-search")}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  Search by Title
+              </Button> 
+              <Button
+                  onClick={() => navigate("/genre-search")}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  Search by Subject
               </Button> 
               <Button
                   onClick={() =>navigate("/shopping-cart")}

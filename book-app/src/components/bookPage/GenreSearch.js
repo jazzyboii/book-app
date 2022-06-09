@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Typography, TextField, Button, Grid, Box } from "@mui/material";
-import DiscoverPage from "../DiscoverPage";
+import Display from "./Display";
 
 function GenreSearch() {
   const [genre, setGenre] = useState("");
@@ -22,9 +22,7 @@ function GenreSearch() {
 
   return (
     <div>
-      <Typography sx={{ variant: "h3", color: "blue" }}>
-        Search by Subject
-      </Typography>
+      <h1>Search by Subject</h1>
       <TextField
         id="filled-basic"
         label="Subject"
@@ -49,7 +47,7 @@ function GenreSearch() {
                   border: "15px solid white",
                 }}
               >
-                <DiscoverPage
+                <Display
                   name={val.title}
                   author={val.authors && val.authors[0].name}
                   isbn={val.availability.isbn}

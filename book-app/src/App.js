@@ -1,14 +1,16 @@
 import "./App.css";
 import { Routes, Route, Link } from "react-router-dom";
 // import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import ShoppingCart from './components/ShoppingCart/ShoppingCart';
-import BookPage from "./components/bookPage/BookPage";
-import PaymentPage from './components/ShoppingCart/PaymentPage';
+import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
+import PaymentPage from "./components/ShoppingCart/PaymentPage";
 // import {Button} from '@mui/material';
-import AuthorContextProvider from "./contexts/authorContext";
 import HomePage from "./components/homePage/HomePage";
-import { ShoppingContext } from './contexts/shoppingContext';
-import { useContext, useEffect } from 'react'
+import { ShoppingContext } from "./contexts/shoppingContext";
+import { useContext, useEffect } from "react";
+import AuthorSearch from "./components/bookPage/AuthorSearch";
+import BookSearch from "./components/bookPage/BookSearch";
+import GenreSearch from "./components/bookPage/GenreSearch";
+import DiscoverPage from "./components/DiscoverPage";
 
 function App() {
   const { setCart } = useContext(ShoppingContext);
@@ -30,16 +32,15 @@ function App() {
 
   return (
     <div className="App">
-      <AuthorContextProvider>
-        <HomePage/>
-        <Routes>
-          <Route path="/shopping-cart" element={<ShoppingCart />} />
-          <Route path="/book-info" element={<BookPage />} />
-          <Route path="/payment-page" element={<PaymentPage />} />
-        </Routes>
-        
-      </AuthorContextProvider>
-
+      <HomePage />
+      <Routes>
+        <Route path="/discover" element={<DiscoverPage />} />
+        <Route path="/shopping-cart" element={<ShoppingCart />} />
+        <Route path="/author-search" element={<AuthorSearch />} />
+        <Route path="/title-search" element={<BookSearch />} />
+        <Route path="/genre-search" element={<GenreSearch />} />
+        <Route path="/payment-page" element={<PaymentPage />} />
+      </Routes>
     </div>
   );
 }

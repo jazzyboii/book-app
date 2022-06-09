@@ -5,14 +5,16 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { AuthorContext } from "../../contexts/authorContext";
-import DiscoverPage from "../DiscoverPage";
+import Display from "./Display";
 import Grid from "@mui/material/Grid";
 import { DescriptionContext } from "../../contexts/descriptionContext";
+import { ShoppingContext } from "../../contexts/shoppingContext";
 
 function AuthorSearch() {
   const [bookz, setBookz] = useState([]);
   const { first, setFirst, last, setLast } = useContext(AuthorContext);
   const { keys, setKeys } = useContext(DescriptionContext);
+  const { cart } = useContext(ShoppingContext)
 
   const handleClick = () => {
     const urlKeys = [];
@@ -33,9 +35,9 @@ function AuthorSearch() {
 
   return (
     <div>
-      <Typography sx={{ variant: "h3", color: "blue" }}>
+      <h1>
         Search by Author
-      </Typography>
+      </h1>
       <TextField
         id="filled-basic"
         label="First Name"
@@ -67,7 +69,7 @@ function AuthorSearch() {
                   border: "15px solid white",
                 }}
               >
-                <DiscoverPage
+                <Display
                   name={val.title}
                   author={val.author_name && val.author_name[0]}
                   isbn={val.isbn && val.isbn[0]}
