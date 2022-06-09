@@ -10,6 +10,7 @@ import HomePage from "./components/homePage/HomePage";
 import { ShoppingContext } from './contexts/shoppingContext';
 import { useContext, useEffect } from 'react';
 
+
 function App() {
   const {setCart} = useContext(ShoppingContext)
 

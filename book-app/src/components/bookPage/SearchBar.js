@@ -37,8 +37,7 @@ function SearchBar() {
         setBookz(booksDiscovery);
         setTitles(bookTitles);
         setKeys(urlKeys);
-      });
-      //.catch((err) => console.log(err));
+      });       
   };
 
   return (

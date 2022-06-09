@@ -17,23 +17,22 @@ function DiscoverPage(props) {
 
   return (
     <div>
-                            <Card sx={{ maxWidth: 200}}>
-                                <CardMedia
-                                component="img"
-                                height="160"
-                                alt="No Photo Found"
-                                image={src}
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                    {name}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                    By {author}
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-
+      <Card sx={{ maxWidth: 200}}>
+          <CardMedia
+          component="img"
+          height="160"
+          alt="No Photo Found"
+          image={src}
+          />
+          <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+              {name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+              By {author}
+              </Typography>
+          </CardContent>
+      </Card>
     </div>
   );
 }

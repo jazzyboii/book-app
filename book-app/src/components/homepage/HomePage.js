@@ -8,8 +8,14 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
-
-
+import Carousel from 'react-multi-carousel';
+import { ShoppingContext } from "../../contexts/shoppingContext";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useRef, useContext } from "react";
+import { AuthorContext } from "../../contexts/authorContext";
+import DiscoverPage from "../DiscoverPage";
+import Grid from '@mui/material/Grid';
 const pages = ['Discover', 'Book Page', 'Shopping Cart'];
 
 
@@ -20,6 +26,38 @@ const HomePage = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [titles, setTitles] = useState([]);
+  const [keys, setKeys] = useState([]);
+  const [isbn, setIsbn] = useState([]);
+  const [ bookz, setBookz ] = useState([]);
+  const { first, setFirst, last, setLast } = useContext(AuthorContext);
+  const bookTitles = [];
+  const urlKeys = [];
+  const bookDesc = [];
+  const booksDiscovery = [];
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+      slidesToSlide: 3
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+      slidesToSlide: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 720 },
+      items: 3,
+      slidesToSlide: 2
+    },
+    mobile: {
+      breakpoint: { max: 720, min: 0 },
+      items: 1,
+      slidesToSlide: 1
+    }
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -74,6 +112,18 @@ const HomePage = () => {
     },
   }));
 
+  fetch(`http://openlibrary.org/search.json?author=david+ross`)
+  .then((res) => res.json())
+  .then((data) => {
+    data.docs.forEach((e) => {
+      bookTitles.push(e.title);
+      urlKeys.push(e.key + ".json");
+      booksDiscovery.push(e);
+    });
+    setBookz(booksDiscovery);
+    setTitles(bookTitles);
+    setKeys(urlKeys);
+  });
 
   return (
     <>
@@ -180,23 +230,66 @@ const HomePage = () => {
                   Shopping Cart
               </Button>            
             </Box>
-          </Toolbar>
+          </Toolbar>          
         </Container>
       </AppBar>
+      <Box
+        sx={{
+          width: 'auto',
+          height: '50vh',
+          backgroundColor: 'primary.dark',
+        }}
+      />
+      <Typography
+        variant="h5"
+        noWrap
+        component="a"
+        href=""
+        sx={{
+          mr: 2,
+          display: { xs: 'flex', md: 'flex' },
+          flexGrow: 1,
+          fontFamily: 'monospace',
+          fontWeight: 700,
+          letterSpacing: '.3rem',
+          color: 'inherit',
+          textDecoration: 'none',
+        }}
+      >
+        Recommendations
+      </Typography>
+      <Carousel
+          swipeable={true}
+          draggable={true}
+          showDots={false}
+          responsive={responsive}
+          ssr={true} // means to render carousel on server-side.
+          infinite={false}
+          keyBoardControl={true}
+          customTransition="all .5"
+          transitionDuration={0}
+          containerClass="carousel-container"
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-40-px"
+          slidesToSlide={2}
+          sliderClass=""            
+        >        
+        {bookz && bookz.map((val, key) => 
+                <Grid item xs={12} sm={2}>
+                    <Box style = {{
+                        flex: '1',
+                        padding:'20',
+                        margin:'.25rem',
+                        border: '15px solid white'
+                    }}>
+                    <DiscoverPage name={val.title} author={val.author_name && val.author_name[0]} isbn={val.isbn && val.isbn[0]}/>
+                    </Box>
+                </Grid>
+            
+            )
+        }          
+      </Carousel>    
     </>
   );
 };
 export default HomePage;
-
-
-
-
-
-
-
-
-
-
-
-
-
