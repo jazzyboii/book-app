@@ -8,32 +8,59 @@ import DialogTitle from '@mui/material/DialogTitle';
 import './orderBreakdown.css'
 
 export default function OrderBreakdown(props) {
-    // const {cart} = useContext(ShoppingContext);
-    const [shippingCosts, setShippingCosts] = useState(0);
-    const [total, setTotal] = useState(0);
-    const weightInOz = 5 * props.amount;
-    let shippingMultiplier = 1;
-    if(props.deliveryOption === "expidited") {
-        shippingMultiplier = 2;
-    }
-
-    let costPerOz;
-    if (weightInOz < 20) {
-        costPerOz = 2 * shippingMultiplier;
-    }
-    else if (weightInOz > 32) {
-        costPerOz = 20 * shippingMultiplier;
-    }
-    else {
-        costPerOz = 10 * shippingMultiplier;
-    }
+    const [shippingCosts, setShippingCosts] = useState("");
+    const [preTotal, setPreTotal] = useState("");
+    const [taxes, setTaxes] = useState("");
+    const [postTotal, setPostTotal] = useState("");
+    const [orderPlaced, setOrderPlaced] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
 
     useEffect( () => {
-        const cost = (costPerOz * weightInOz * 0.01).toFixed(2);
-        setShippingCosts(cost);
-        const total = props.amount + shippingCosts;
-        setTotal(total);
-    }, [costPerOz, weightInOz])
+        const weightInOz = 5 * props.amount;
+        let shippingMultiplier = 1;
+        if(props.deliveryOption === "expidited") {
+            shippingMultiplier = 2;
+        }
+
+        let costPerOz = 0;
+        if (weightInOz < 20) {
+            costPerOz = 2 * shippingMultiplier;
+        }
+        else if (weightInOz > 32) {
+            costPerOz = 15 * shippingMultiplier;
+        }
+        else {
+            costPerOz = 7 * shippingMultiplier;
+        }
+
+        const varShippingCosts = costPerOz * weightInOz * 0.01;
+        const varPreTotal = props.amount + varShippingCosts;
+        const varTaxes = varPreTotal * 0.053;
+        const varPostTotal = varPreTotal + varTaxes;
+        setShippingCosts(varShippingCosts.toFixed(2));
+        console.log(shippingCosts, " shipping costs is a ", typeof(shippingCosts))
+        setPreTotal(varPreTotal);
+        console.log(preTotal, " pretotal is a ", typeof(preTotal))
+        setTaxes(varTaxes.toFixed(2))
+        console.log(taxes, " taxes is a ", typeof(taxes))
+        setPostTotal(varPostTotal.toFixed(2))
+        console.log(postTotal, " postotal is a ", typeof(postTotal))
+    }, [props.amount])
+//https://github.com/jasonpau/react-shipping-calculator/blob/master/src/main.js
+    function placeOrder() {
+        setOrderPlaced(true);
+        setOpenDialog(true);
+    }
+
+    function handleClose () {
+        setOpenDialog(false);
+        setOrderPlaced(false);
+    }
+
+    function handleCloseSuccess() {
+        setOpenDialog(false);
+    }
+
 
     return( 
         <>
