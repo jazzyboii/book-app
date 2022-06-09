@@ -26,6 +26,7 @@ function AuthorSearch() {
         data.docs.forEach((e) => {
           urlKeys.push(e.key + ".json");
           booksDiscovery.push(e);
+          console.log(e.first_publish_year)
         });
         setBookz(booksDiscovery);
         setKeys(urlKeys);
@@ -42,6 +43,7 @@ function AuthorSearch() {
         id="filled-basic"
         label="First Name"
         variant="filled"
+        required
         sx={{ m: 1}}
         onChange={(e) => setFirst(e.target.value)}
       />
@@ -49,6 +51,7 @@ function AuthorSearch() {
         id="filled-basic"
         label="Last Name"
         variant="filled"
+        required
         sx={{ m: 1 }}
         onChange={(e) => setLast(e.target.value)}
       />
@@ -64,9 +67,7 @@ function AuthorSearch() {
               <Box
                 style={{
                   flex: "1",
-                  padding: "20",
                   margin: ".25rem",
-                  border: "15px solid white",
                 }}
               >
                 <Display
@@ -74,6 +75,7 @@ function AuthorSearch() {
                   author={val.author_name && val.author_name[0]}
                   isbn={val.isbn && val.isbn[0]}
                   urlKey={val.key}
+                  publishDate={val.first_publish_year}
                 />
               </Box>
             </Grid>

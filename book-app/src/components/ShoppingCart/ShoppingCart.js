@@ -79,7 +79,7 @@ export default function ShoppingCart() {
 
   return (
     <>
-      <p>you are at the shopping cart</p>
+      <h1>Shopping Cart</h1>
 
       {array &&
         array.map((book) => (

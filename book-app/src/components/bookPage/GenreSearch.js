@@ -8,8 +8,10 @@ function GenreSearch() {
 
   const handleClick = () => {
     const books = [];
+    const genreArray = genre.trim().split(/\s+/);
+    const genreUrl = genreArray.join("+");
 
-    fetch(`http://openlibrary.org/subjects/${genre}.json`)
+    fetch(`http://openlibrary.org/subjects/${genreUrl}.json`)
       .then((res) => res.json())
       .then((data) => {
         data.works.forEach((e) => {
@@ -28,6 +30,7 @@ function GenreSearch() {
         label="Subject"
         variant="filled"
         sx={{ m: 1 }}
+        required
         onChange={(e) => setGenre(e.target.value)}
       />
       <p>
@@ -43,8 +46,10 @@ function GenreSearch() {
                 style={{
                   flex: "1",
                   padding: "20",
-                  margin: ".25rem",
-                  border: "15px solid white",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  borderRadius: "20px"
+                  
                 }}
               >
                 <Display

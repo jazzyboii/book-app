@@ -31,6 +31,7 @@ function BookSearch() {
         label="Title"
         variant="filled"
         sx={{ m: 1 }}
+        required
         onChange={(e) => setTitle(e.target.value)}
       />
       <p>
@@ -47,7 +48,6 @@ function BookSearch() {
                   flex: "1",
                   padding: "20",
                   margin: ".25rem",
-                  border: "15px solid white",
                 }}
               >
                 <Display

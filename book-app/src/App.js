@@ -11,6 +11,8 @@ import AuthorSearch from "./components/bookPage/AuthorSearch";
 import BookSearch from "./components/bookPage/BookSearch";
 import GenreSearch from "./components/bookPage/GenreSearch";
 import DiscoverPage from "./components/DiscoverPage";
+import CarouselDisplay from "./components/homePage/CarouselDisplay";
+import CarouselBooks from "./components/homePage/CarouselBooks";
 
 function App() {
   const { setCart } = useContext(ShoppingContext);
@@ -34,6 +36,7 @@ function App() {
     <div className="App">
       <HomePage />
       <Routes>
+        <Route path="/" element={<CarouselBooks />} />
         <Route path="/discover" element={<DiscoverPage />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />
         <Route path="/author-search" element={<AuthorSearch />} />

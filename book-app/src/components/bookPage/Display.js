@@ -35,7 +35,17 @@ function Display(props) {
 
   return (
     <div>
-      <Card sx={{ maxWidth: 250, minHeight: 400 }}>
+      <Card
+        sx={{
+          maxWidth: 300,
+          minHeight: 400,
+          ":hover": {
+            boxShadow: 30,
+          },
+          margin: "auto",
+          borderRadius: "20px"
+        }}
+      >
         <CardMedia
           component="img"
           height="180"
