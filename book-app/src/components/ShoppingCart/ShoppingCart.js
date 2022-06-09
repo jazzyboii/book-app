@@ -61,6 +61,19 @@ export default function ShoppingCart() {
     //     }, [reloadData])
   // console.log("shopping list: ", cart);
 
+  // useEffect( () => {
+  //         if (reloadData) {
+  //             fetch("http://localhost:9000/shopping/info")
+  //             .then((res) => res.json())
+  //             .then((text) => {
+  //                 console.log("ShoppingCart: ", text)
+  //                 setCart(text.result)
+  //                 })
+  //                 .then(setReloadData(false))
+  //             .catch((err) => console.log(err))
+  //             }
+  //     }, [reloadData])
+
   function handleOpen() {
     setWantsToDelete(true);
   }
