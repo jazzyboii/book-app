@@ -6,19 +6,11 @@
   grid-row-gap: 17px;
   }
   
-  .div1 { grid-area: 1 / 5 / 6 / 9; 
-    /* border-color: blue;
-    border-style: dashed; */
+  .div1 { grid-area: 1 / 5 / 6 / 13; 
+    border-color: blue;
+    border-style: dashed;
   }
-  .div2 { grid-area: 1 / 1 / 5 / 5; 
-    /* border-color: blue;
-    border-style: dashed; */
-  }
-  .div3 { grid-area: 1 / 10 / 2 / 12; 
-    /* border-color: blue;
-    border-style: dashed; */
-  }
-  .div4 { grid-area: 1 / 9 / 5 / 13; 
+  .div2 { grid-area: 1 / 1 / 6 / 5;
     /* border-color: blue;
     border-style: dashed; */
   }
@@ -32,6 +24,13 @@
   width: 80%;
   margin: auto;
   padding-bottom: 5%;
+}
+
+.rightBacking{
+  width: 90%;
+  margin:auto;
+  border-color: blue;
+  border-style: dashed;
 }
 
 .form{

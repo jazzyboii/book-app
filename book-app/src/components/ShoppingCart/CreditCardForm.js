@@ -1,6 +1,7 @@
 import {Grid, TextField, Button, Select, InputLabel, MenuItem, Paper, Divider} from "@mui/material";
 import {useState} from 'react';
 import './creditCard.css'
+import OrderBreakdown from "./OrderBreakdown";
 
 export default function CreditCardForm() {
     const defaultValues ={
@@ -153,7 +154,9 @@ export default function CreditCardForm() {
       };
 
     return(
-        <Paper elevation={5} className="creditCardbacking">
+        <>
+            <div className="creditCardFormPart">
+            <Paper elevation={5} className="creditCardbacking">
             <h2>Payment Information</h2>
                     {dataSubmitted?<form onSubmit={handleSubmit}>
                         
@@ -431,5 +434,11 @@ export default function CreditCardForm() {
                             </form>
                         }
                 </Paper>
+        </div>
+
+        <div className="orderBreakdownPart">
+            <OrderBreakdown></OrderBreakdown>
+        </div>
+        </>
     );
 }

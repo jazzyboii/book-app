@@ -241,19 +241,11 @@ export default function PaymentPage() {
                 </div>
 
                 <div className='div1'>
-                    <CreditCardForm/>
+                    <div className="rightBacking">
+                        <CreditCardForm/>
+                    </div>
                 </div>
 
-                <div className="div3"></div>
-
-                <div className="div4">
-                <Button variant="contained" onClick={goBack}>Shopping Cart</Button>
-                    <Paper elevation={5} className="orderBacking">
-                        <OrderBreakdown amount={amount} deliveryOption={deliveryOption} location={officialLocation}/>
-                    </Paper>
-                </div>
-
-            {/* <Button variant="outlined" onClick={goBack} className='goBackButton'> Go Back </Button> */}
             </div>
         </>
     );
