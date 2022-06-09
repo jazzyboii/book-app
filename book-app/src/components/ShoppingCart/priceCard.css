@@ -1,0 +1,10 @@
+.paymentDiv{
+    /* margin-inline-start: 10%;
+    border-color: blue;
+    border-style: dotted; */
+    width: 100%;
+}
+
+.paymentButton{
+    margin-inline-start: auto;
+}

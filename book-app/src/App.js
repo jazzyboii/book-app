@@ -2,11 +2,11 @@ import "./App.css";
 import { Routes, Route, Link } from "react-router-dom";
 // import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
-import BookPage from "./components/bookPage/BookPage";
+// import BookPage from "./components/bookPage/BookPage";
 import PaymentPage from './components/ShoppingCart/PaymentPage';
 // import {Button} from '@mui/material';
 import AuthorContextProvider from "./contexts/authorContext";
-import HomePage from "./components/homePage/HomePage";
+import HomePage from "./components/homepage/HomePage";
 import { ShoppingContext } from './contexts/shoppingContext';
 import { useContext, useEffect } from 'react'
 
@@ -34,7 +34,7 @@ function App() {
         <HomePage/>
         <Routes>
           <Route path="/shopping-cart" element={<ShoppingCart />} />
-          <Route path="/book-info" element={<BookPage />} />
+          {/* <Route path="/book-info" element={<BookPage />} /> */}
           <Route path="/payment-page" element={<PaymentPage />} />
         </Routes>
         
