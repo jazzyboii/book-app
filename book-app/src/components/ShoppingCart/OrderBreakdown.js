@@ -72,7 +72,8 @@ export default function OrderBreakdown(props) {
             <h4>Taxes: {taxes}</h4>
             <h3>Order Total: ${postTotal}</h3>
             <div className="orderButtonDiv">
-                {orderPlaced?<Button className="orderButton" variant="contained" disabled onClick={placeOrder}>Place Your Order</Button>:<Button className="orderButton" variant="contained" onClick={placeOrder}>Place Your Order</Button>}
+                {props.creditSubmit && props.locationSubmit?!orderPlaced?<Button className="orderButton" variant="contained" onClick={placeOrder}>Place Your Order</Button>:<Button className="orderButton" variant="contained" disabled onClick={placeOrder}>Place Your Order</Button>:<Button className="orderButton" variant="contained" disabled onClick={placeOrder}>Place Your Order</Button>}
+                {/* {orderPlaced?<Button className="orderButton" variant="contained" disabled onClick={placeOrder}>Place Your Order</Button>:<Button className="orderButton" variant="contained" onClick={placeOrder}>Place Your Order</Button>} */}
             </div>
 
             {/* <Card sx={{width:"100%"}}>
