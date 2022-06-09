@@ -1,0 +1,28 @@
+.product{
+    margin-top: 1%;
+    margin-bottom: 5%;
+}
+
+.priceCard{
+    float: right;
+    /* max-width: 40%; */
+    min-width: 30%;
+    margin-right: 5%;
+}
+
+.leftSide{
+    margin-left: 1%;
+    min-width: 50%;
+    max-width: 50%;
+    float: left;
+    /* border-color: blue;
+    border-style: dashed; */
+}
+
+.deleteButtonDiv{
+    width: 100%;
+}
+
+.deleteButton{
+    margin-inline-start: auto;
+}

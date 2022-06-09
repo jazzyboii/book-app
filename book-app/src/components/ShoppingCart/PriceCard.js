@@ -1,5 +1,6 @@
 import { Card, CardContent, CardActions, Typography, Button, Divider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import './priceCard.css';
 // import { useState, forwardRef } from "react";
 // import Dialog from '@mui/material/Dialog';
 // import DialogActions from '@mui/material/DialogActions';
@@ -39,14 +40,14 @@ export default function PriceCard(props) {
 
     return( 
         <>
-            <Card sx={{width:"30%", float:"right"}}>
+            <Card sx={{width:"100%", float:"right"}}>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
                         Subtotal - {amount} items
                     </Typography>
                 </CardContent>
                 {props.data.map( (book) => <div key={book.title}>
-                    {book.amount>1?<p> $1.00 x ({book.amount}) = ${book.amount}.00</p>:book.amount===1?<p>$1.00</p>:<></>}
+                    {book.amount>1?<p>{book.title} -  $1.00 x ({book.amount}) = ${book.amount}.00</p>:book.amount===1?<p>$1.00</p>:<></>}
                 </div>)}
                 <br></br>
                 <Divider>Total</Divider>
@@ -57,8 +58,10 @@ export default function PriceCard(props) {
                     </Typography>
                 </CardContent>
 
-                <CardActions>
-                    <Button variant="contained" color="success" size="large" onClick={goToPaymentPage}>Continue to Payment</Button>
+                <CardActions >
+                    <div className="paymentDiv">
+                        <Button className="paymentButton" variant="contained" color="success" size="large" onClick={goToPaymentPage}>Continue to Payment</Button>
+                    </div>
                 </CardActions>
             </Card>
 

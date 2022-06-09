@@ -1,5 +1,6 @@
-import {Grid, TextField, Button, Select, InputLabel, MenuItem, Paper} from "@mui/material";
+import {Grid, TextField, Button, Select, InputLabel, MenuItem, Paper, Divider} from "@mui/material";
 import {useState} from 'react';
+import './creditCard.css'
 
 export default function CreditCardForm() {
     const defaultValues ={
@@ -152,9 +153,13 @@ export default function CreditCardForm() {
       };
 
     return(
-        <Paper elevation={5} >
+        <Paper elevation={5} className="creditCardbacking">
+            <h2>Payment Information</h2>
                     {dataSubmitted?<form onSubmit={handleSubmit}>
+                        
                             <Grid container spacing={2} alignItems="center" direction="column">
+                                <Grid item>
+                                </Grid>
                                 <Grid item xs={12} sm={4}>
                                     <TextField
                                         required
@@ -215,7 +220,7 @@ export default function CreditCardForm() {
                                         <MenuItem value={11}>11 - November</MenuItem>
                                         <MenuItem value={12}>12 - December</MenuItem>
                                     </Select>
-
+                                    <Divider orientation="vertical" flexItem />
                                     <TextField
                                         required
                                         variant="filled" color="success"
@@ -263,7 +268,7 @@ export default function CreditCardForm() {
                                 <Grid item xs={12} sm={4}>
                                     {firstError?<TextField
                                         required
-                                        variant="outlined"
+                                        variant="standard"
                                         id="first-name-input"
                                         name="first"
                                         label="First Name"
@@ -273,7 +278,7 @@ export default function CreditCardForm() {
                                         onChange={handleFirstInputChange}
                                     />:<TextField
                                         required
-                                        variant="outlined"
+                                        variant="standard"
                                         id="first-name-input"
                                         name="first"
                                         label="First Name"
@@ -285,7 +290,7 @@ export default function CreditCardForm() {
                                 <Grid item xs={12} sm={4}>
                                     {lastError?<TextField
                                         required
-                                        variant="outlined"
+                                        variant="standard"
                                         id="last-name-input"
                                         name="last"
                                         label="Last Name"
@@ -295,7 +300,7 @@ export default function CreditCardForm() {
                                         onChange={handleLastInputChange}
                                     />:<TextField
                                         required
-                                        variant="outlined"
+                                        variant="standard"
                                         id="last-name-input"
                                         name="last"
                                         label="Last Name"
@@ -307,7 +312,7 @@ export default function CreditCardForm() {
                                  <Grid item>
                                     {emailError?<TextField
                                         required
-                                        variant="outlined"
+                                        variant="standard"
                                         id="email-input"
                                         name="email"
                                         label="Email Address"
@@ -317,7 +322,7 @@ export default function CreditCardForm() {
                                         onChange={handleEmailInputChange}
                                     />:<TextField
                                         required
-                                        variant="outlined"
+                                        variant="standard"
                                         id="email-input"
                                         name="email"
                                         label="Email Address"
@@ -328,6 +333,7 @@ export default function CreditCardForm() {
                                 </Grid>
                                 <Grid item>
                                     <InputLabel id="demo-simple-select-label">Expiration Date</InputLabel>
+                                    <br></br>
                                     <Select
                                         required
                                         variant="outlined"
@@ -337,20 +343,20 @@ export default function CreditCardForm() {
                                         label="Month"
                                         onChange={handleInputChange}
                                     >
-                                        <MenuItem value={1}>1 - January</MenuItem>
-                                        <MenuItem value={2}>2 - February</MenuItem>
-                                        <MenuItem value={3}>3 - March</MenuItem>
-                                        <MenuItem value={4}>4 - April</MenuItem>
-                                        <MenuItem value={5}>5 - May</MenuItem>
-                                        <MenuItem value={6}>6 - June</MenuItem>
-                                        <MenuItem value={7}>7 - July</MenuItem>
-                                        <MenuItem value={8}>8 - August</MenuItem>
-                                        <MenuItem value={9}>9 - September</MenuItem>
-                                        <MenuItem value={10}>10 - October</MenuItem>
-                                        <MenuItem value={11}>11 - November</MenuItem>
-                                        <MenuItem value={12}>12 - December</MenuItem>
+                                        <MenuItem value={1}>January</MenuItem>
+                                        <MenuItem value={2}>February</MenuItem>
+                                        <MenuItem value={3}>March</MenuItem>
+                                        <MenuItem value={4}>April</MenuItem>
+                                        <MenuItem value={5}>May</MenuItem>
+                                        <MenuItem value={6}>June</MenuItem>
+                                        <MenuItem value={7}>July</MenuItem>
+                                        <MenuItem value={8}>August</MenuItem>
+                                        <MenuItem value={9}>September</MenuItem>
+                                        <MenuItem value={10}>October</MenuItem>
+                                        <MenuItem value={11}>November</MenuItem>
+                                        <MenuItem value={12}>December</MenuItem>
                                     </Select>
-
+                                    {/* <Divider orientation="vertical" flexItem /> */}
                                     {expirationYearErorr?<TextField
                                         required
                                         variant="outlined"
@@ -375,7 +381,7 @@ export default function CreditCardForm() {
                                 <Grid item>
                                     {creditCardNumberError?<TextField
                                         required
-                                        variant="outlined"
+                                        variant="standard"
                                         id="creditCardNumber-input"
                                         name="creditCardNum"
                                         label="Credit Card Number"
@@ -385,7 +391,7 @@ export default function CreditCardForm() {
                                         onChange={handleCreditCardNumberInputChange}
                                     />:<TextField
                                         required
-                                        variant="outlined"
+                                        variant="standard"
                                         id="creditCardNumber-input"
                                         name="creditCardNum"
                                         label="Credit Card Number"
@@ -397,7 +403,7 @@ export default function CreditCardForm() {
                                 <Grid item>
                                     {cvcError?<TextField
                                         required
-                                        variant="outlined"
+                                        variant="standard"
                                         id="cvc-input"
                                         name="cvc"
                                         label="CVV"
@@ -407,7 +413,7 @@ export default function CreditCardForm() {
                                         onChange={handleCVCInputChange}
                                     />:<TextField
                                         required
-                                        variant="outlined"
+                                        variant="standard"
                                         id="cvc-input"
                                         name="cvc"
                                         label="CVV"
