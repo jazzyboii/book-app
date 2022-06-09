@@ -137,117 +137,122 @@ export default function PaymentPage() {
       };
     return(
         <>
-           {amount>1?<h1>Checkout - {amount} items</h1>:amount===1?<h1>Checkout - {amount} item</h1>:<h1>You have no Items</h1>}
+            <div>
+                {amount>1?<h1>Checkout - {amount} items</h1>:amount===1?<h1>Checkout - {amount} item</h1>:<h1>You have no Items</h1>}
+            </div>
             
             <div className="parent">
             
                 <div className="div2">
-                <Paper elevation={5}>
-            {dataSubmitted?
-                <div>
-                    <Button onClick={()=> {setDataSubmitted(false)}}>Edit Information</Button>
-                    <h4>Thank you, Location Recieved!</h4>
-                    {/* <p>{latitude}</p>
-                    <p>{longitude}</p> */}
-                </div>
-                :<div>
-                    <Button variant = "contained" color = "success" onClick={getLocation}>Get Location</Button>
-                    <form onSubmit={handleSubmit}>
-                        <Grid container spacing={2} alignItems="center" direction="column">
-                            <Grid item>
-                                <TextField
-                                    required
-                                    variant="outlined"
-                                    id="address-input"
-                                    name="address"
-                                    label="Mailing Address"
-                                    type="text"
-                                    value={formValues.address}
-                                    onChange={handleInputChange}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={4}>
-                                {zipCodeError?<TextField
+                    <Paper elevation={5} className="locationBacking">
+                    {dataSubmitted?
+                        <div>
+                            <h2>Thank you, Location Recieved!</h2>
+                            <Button onClick={()=> {setDataSubmitted(false)}}>Edit Information</Button>
+                            {/* <p>{latitude}</p>
+                            <p>{longitude}</p> */}
+                        </div>
+                        :<div className="locationGetter">
+                            <h2>Location Information</h2>
+                            <Button variant = "contained" color = "success" className="locationButton" onClick={getLocation}>Get Location</Button>
+                        <form onSubmit={handleSubmit} className="form">
+                            <Grid container spacing={2} alignItems="center" direction="column">
+                                <Grid item>
+                                    <TextField
                                         required
                                         variant="outlined"
-                                        id="zipcode-input"
-                                        name="zipcode"
-                                        label="Zip Code"
+                                        id="address-input"
+                                        name="address"
+                                        label="Mailing Address"
                                         type="text"
-                                        error
-                                        value={formValues.zipcode}
-                                        onChange={handleZipCodeInputChange}
-                                    />:<TextField
-                                        required
-                                        variant="outlined"
-                                        id="zipcode-input"
-                                        name="zipcode"
-                                        label="Zip Code"
-                                        type="text"
-                                        value={formValues.zipcode}
-                                        onChange={handleZipCodeInputChange}
-                                    />}
+                                        value={formValues.address}
+                                        onChange={handleInputChange}
+                                    />
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
-                                {cityError?<TextField
+                                    {zipCodeError?<TextField
+                                            required
+                                            variant="outlined"
+                                            id="zipcode-input"
+                                            name="zipcode"
+                                            label="Zip Code"
+                                            type="text"
+                                            error
+                                            value={formValues.zipcode}
+                                            onChange={handleZipCodeInputChange}
+                                        />:<TextField
+                                            required
+                                            variant="outlined"
+                                            id="zipcode-input"
+                                            name="zipcode"
+                                            label="Zip Code"
+                                            type="text"
+                                            value={formValues.zipcode}
+                                            onChange={handleZipCodeInputChange}
+                                        />}
+                                    </Grid>
+                                    <Grid item xs={12} sm={4}>
+                                    {cityError?<TextField
+                                            required
+                                            variant="outlined"
+                                            id="city-input"
+                                            name="city"
+                                            label="City"
+                                            type="text"
+                                            error
+                                            value={formValues.city}
+                                            onChange={handleCityInputChange}
+                                        />:<TextField
                                         required
-                                        variant="outlined"
-                                        id="city-input"
-                                        name="city"
-                                        label="City"
-                                        type="text"
-                                        error
-                                        value={formValues.city}
-                                        onChange={handleCityInputChange}
-                                    />:<TextField
-                                    required
-                                        variant="outlined"
-                                        id="city-input"
-                                        name="city"
-                                        label="City"
-                                        type="text"
-                                        value={formValues.city}
-                                        onChange={handleCityInputChange}
-                                    />}
-                                </Grid>
-                                <div className='submitButton'>
-                                    <Button variant="contained" color="primary" type="submit" className='addStudentbutton'>
-                                        Submit
-                                    </Button>
-                                </div>
-                        </Grid>
-                    </form>
-                </div>}
-
+                                            variant="outlined"
+                                            id="city-input"
+                                            name="city"
+                                            label="City"
+                                            type="text"
+                                            value={formValues.city}
+                                            onChange={handleCityInputChange}
+                                        />}
+                                    </Grid>
+                                    <div className='submitButton'>
+                                        <Button variant="contained" color="primary" type="submit" className='submitButton'>
+                                            Submit
+                                        </Button>
+                                    </div>
+                            </Grid>
+                        </form>
+                    </div>}
                 <Divider/>
                 
                 <FormControl>
-                <FormLabel id="delivery-options-group-label">Delivery Options</FormLabel>
-                <RadioGroup
-                    aria-labelledby="delivery-optoins-group-label"
-                    value={deliveryOption}
-                    name="radio-buttons-group"
-                    onChange={handleDeliveryChange}
-                >
-                    <FormControlLabel value="regular" control={<Radio />} label="Regular Shipping (5 day)" />
-                    <FormControlLabel value="expedited" control={<Radio />} label="Expedited Shipping (1 day)" />
-                </RadioGroup>
+                    <FormLabel id="delivery-options-group-label">Delivery Options</FormLabel>
+
+                    <RadioGroup
+                        aria-labelledby="delivery-options-group-label"
+                        value={deliveryOption}
+                        name="radio-buttons-group"
+                        onChange={handleDeliveryChange}
+                    >
+                        <FormControlLabel value="regular" control={<Radio />} label="Regular Shipping (5 day)" />
+                        <FormControlLabel value="expedited" control={<Radio />} label="Expedited Shipping (1 day)" />
+                    </RadioGroup>
                 </FormControl>
 
-            </Paper>
+                </Paper>
                 </div>
 
                 <div className='div1'>
                     <CreditCardForm/>
                 </div>
 
-                <div className="div5"><Button onClick={goBack}>Go Back</Button></div>
+                <div className="div3"></div>
 
                 <div className="div4">
-                    <OrderBreakdown amount={amount} deliveryOption={deliveryOption} location={officialLocation}/>
+                <Button variant="contained" onClick={goBack}>Shopping Cart</Button>
+                    <Paper elevation={5} className="orderBacking">
+                        <OrderBreakdown amount={amount} deliveryOption={deliveryOption} location={officialLocation}/>
+                    </Paper>
                 </div>
 
-                <div className="div3"><p>Delivery options</p></div>
             {/* <Button variant="outlined" onClick={goBack} className='goBackButton'> Go Back </Button> */}
             </div>
         </>

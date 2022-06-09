@@ -143,10 +143,11 @@ export default function ShoppingCart() {
 
                       <Typography
                         variant="body"
+                        fontSize={16}
                         color="text.secondary"
-                        sx={{ fontWeight: "bold", fontStyle: "oblique" }}
+                        sx={{ fontWeight: "bold"}}
                       >
-                        Amount: {book.amount}
+                      {book.amount}
                       </Typography>
 
                       <IconButton aria-label="addCopy" onClick={() => {

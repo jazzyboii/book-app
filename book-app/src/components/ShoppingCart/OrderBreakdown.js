@@ -1,12 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { ShoppingContext } from "../../contexts/shoppingContext";
-import { Divider, Button } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Button, Divider } from "@mui/material";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { typography } from "@mui/system";
+import './orderBreakdown.css'
 
 export default function OrderBreakdown(props) {
     // const {cart} = useContext(ShoppingContext);
@@ -68,11 +67,38 @@ export default function OrderBreakdown(props) {
             <h2>Order Summary</h2>
             <Divider/>
             <h4>Books: ${props.amount}.00</h4>
-            <h4>Shipping: ${shippingCosts}</h4>
+            <h4>Shipping Estimate: ${shippingCosts}</h4>
             <h4>Total before Tax: ${preTotal}.00</h4>
             <h4>Taxes: {taxes}</h4>
             <h3>Order Total: ${postTotal}</h3>
-            {orderPlaced?<Button variant="contained" disabled onClick={placeOrder}>Place Your Order</Button>:<Button variant="contained" onClick={placeOrder}>Place Your Order</Button>}
+            <div className="orderButtonDiv">
+                {orderPlaced?<Button className="orderButton" variant="contained" disabled onClick={placeOrder}>Place Your Order</Button>:<Button className="orderButton" variant="contained" onClick={placeOrder}>Place Your Order</Button>}
+            </div>
+
+            {/* <Card sx={{width:"100%"}}>
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
+                        Order Summary
+                    </Typography>
+                    <Divider/>
+                </CardContent>
+                    <Typography>
+                    <h4>Books: ${props.amount}.00</h4>
+                    <h4>Shipping Estimate: ${shippingCosts}</h4>
+                    <h4>Total before Tax: ${preTotal}.00</h4>
+                    <h4>Taxes: {taxes}</h4>
+                    <br></br>
+                    <h3>Order Total: ${postTotal}</h3>
+                    </Typography>
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
+                    </Typography>
+                </CardContent>
+
+                <CardActions>
+                    {orderPlaced?<Button variant="contained" disabled onClick={placeOrder}>Place Your Order</Button>:<Button variant="contained" onClick={placeOrder}>Place Your Order</Button>}
+                </CardActions>
+            </Card> */}
 
             <Dialog
                 open={openDialog}
