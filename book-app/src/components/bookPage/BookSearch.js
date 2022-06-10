@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Typography, TextField, Button } from "@mui/material";
-import DiscoverPage from "../DiscoverPage";
 import { Grid, Box } from "@mui/material";
+import Display from "./Display";
 
 function BookSearch() {
   const [title, setTitle] = useState("");
@@ -25,14 +25,13 @@ function BookSearch() {
 
   return (
     <div>
-      <Typography sx={{ variant: "h3", color: "blue" }}>
-        Search by Title
-      </Typography>
+      <h1>Search by Title</h1>
       <TextField
         id="filled-basic"
         label="Title"
         variant="filled"
         sx={{ m: 1 }}
+        required
         onChange={(e) => setTitle(e.target.value)}
       />
       <p>
@@ -49,10 +48,9 @@ function BookSearch() {
                   flex: "1",
                   padding: "20",
                   margin: ".25rem",
-                  border: "15px solid white",
                 }}
               >
-                <DiscoverPage
+                <Display
                   name={val.title}
                   author={val.author_name && val.author_name[0]}
                   isbn={val.isbn && val.isbn[0]}

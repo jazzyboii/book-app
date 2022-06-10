@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Typography, TextField, Button, Grid, Box } from "@mui/material";
-import DiscoverPage from "../DiscoverPage";
+import Display from "./Display";
 
 function GenreSearch() {
   const [genre, setGenre] = useState("");
@@ -8,8 +8,10 @@ function GenreSearch() {
 
   const handleClick = () => {
     const books = [];
+    const genreArray = genre.trim().split(/\s+/);
+    const genreUrl = genreArray.join("+");
 
-    fetch(`http://openlibrary.org/subjects/${genre}.json`)
+    fetch(`http://openlibrary.org/subjects/${genreUrl}.json`)
       .then((res) => res.json())
       .then((data) => {
         data.works.forEach((e) => {
@@ -22,14 +24,13 @@ function GenreSearch() {
 
   return (
     <div>
-      <Typography sx={{ variant: "h3", color: "blue" }}>
-        Search by Subject
-      </Typography>
+      <h1>Search by Subject</h1>
       <TextField
         id="filled-basic"
         label="Subject"
         variant="filled"
         sx={{ m: 1 }}
+        required
         onChange={(e) => setGenre(e.target.value)}
       />
       <p>
@@ -45,11 +46,13 @@ function GenreSearch() {
                 style={{
                   flex: "1",
                   padding: "20",
-                  margin: ".25rem",
-                  border: "15px solid white",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  borderRadius: "20px"
+                  
                 }}
               >
-                <DiscoverPage
+                <Display
                   name={val.title}
                   author={val.authors && val.authors[0].name}
                   isbn={val.availability.isbn}

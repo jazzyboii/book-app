@@ -5,14 +5,16 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { AuthorContext } from "../../contexts/authorContext";
-import DiscoverPage from "../DiscoverPage";
+import Display from "./Display";
 import Grid from "@mui/material/Grid";
 import { DescriptionContext } from "../../contexts/descriptionContext";
+import { ShoppingContext } from "../../contexts/shoppingContext";
 
 function AuthorSearch() {
   const [bookz, setBookz] = useState([]);
   const { first, setFirst, last, setLast } = useContext(AuthorContext);
   const { keys, setKeys } = useContext(DescriptionContext);
+  const { cart } = useContext(ShoppingContext)
 
   const handleClick = () => {
     const urlKeys = [];
@@ -24,6 +26,7 @@ function AuthorSearch() {
         data.docs.forEach((e) => {
           urlKeys.push(e.key + ".json");
           booksDiscovery.push(e);
+          console.log(e.first_publish_year)
         });
         setBookz(booksDiscovery);
         setKeys(urlKeys);
@@ -33,13 +36,14 @@ function AuthorSearch() {
 
   return (
     <div>
-      <Typography sx={{ variant: "h3", color: "blue" }}>
+      <h1>
         Search by Author
-      </Typography>
+      </h1>
       <TextField
         id="filled-basic"
         label="First Name"
         variant="filled"
+        required
         sx={{ m: 1}}
         onChange={(e) => setFirst(e.target.value)}
       />
@@ -47,6 +51,7 @@ function AuthorSearch() {
         id="filled-basic"
         label="Last Name"
         variant="filled"
+        required
         sx={{ m: 1 }}
         onChange={(e) => setLast(e.target.value)}
       />
@@ -62,16 +67,15 @@ function AuthorSearch() {
               <Box
                 style={{
                   flex: "1",
-                  padding: "20",
                   margin: ".25rem",
-                  border: "15px solid white",
                 }}
               >
-                <DiscoverPage
+                <Display
                   name={val.title}
                   author={val.author_name && val.author_name[0]}
                   isbn={val.isbn && val.isbn[0]}
                   urlKey={val.key}
+                  publishDate={val.first_publish_year}
                 />
               </Box>
             </Grid>
