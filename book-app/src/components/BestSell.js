@@ -130,14 +130,23 @@ function BestSell(props) {
 
   const addCart = (props) => {
     console.log(cart);
-    setCart([
-      ...cart,
-      {
+    if(cart === null) {
+      setCart([{
         title: name,
-        isbn: isbn,
-        amount: 1,
-      },
-    ]);
+        isbn, isbn,
+        amount: 1
+      }])
+    }
+    else{
+      setCart([
+        ...cart,
+        {
+          title: name,
+          isbn: isbn,
+          amount: 1,
+        },
+      ]);
+    }
     var text = name + " was added to cart!";
     alert(text);
   };
