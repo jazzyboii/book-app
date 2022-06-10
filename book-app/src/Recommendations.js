@@ -13,11 +13,10 @@ import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import Carousel from 'react-multi-carousel';
-import Display from "/Users/davidvincent/Desktop/book-app/book-app/src/components/bookPage/Display.js"; 
+import Display from "./components/bookPage/Display";
 import { useState } from "react";
 import { useContext } from "react";
-import { AuthorContext } from "../../contexts/authorContext";
-import DiscoverPage from "../DiscoverPage";
+import { AuthorContext } from "./contexts/authorContext";
 import Grid from '@mui/material/Grid';
 
 const pages = [
@@ -80,28 +79,46 @@ const Recommendations = () => {
 
 
   return (
-    <>    
-      <Grid Container>
-      {bookz && bookz.map((val, k) => (
-          <Grid item xs={12} sm={2}>
-            <Box
-              style={{
-                flex: "1",
-                margin: ".25rem",
-              }}
-            >
-              <Display
-                name={val.title}
-                author={val.author_name && val.author_name[0]}
-                isbn={val.isbn && val.isbn[0]}
-                urlKey={val.key}
-                publishDate={val.first_publish_year}
-              />
-            </Box>
-          </Grid>
-        ))}
-      </Grid>                              
-    </>
+    <>
+    <Typography
+    variant="h5"
+    noWrap
+    sx={{
+      mr: 2,
+      display: { xs: 'flex', md: 'flex' },
+      flexGrow: 1,
+      fontFamily: 'monospace',
+      fontWeight: 700,
+      letterSpacing: '.3rem',
+      color: 'inherit',
+      textDecoration: 'none',
+      marginTop:"2rem"
+    }}
+  >
+    Recommendations
+    </Typography>
+    <Grid container>
+    {bookz &&
+      bookz.map((val, k) => (
+        <Grid item xs={12} sm={2}>
+          <Box
+            style={{
+              flex: "1",
+              margin: ".25rem",
+            }}
+          >
+            <Display
+              name={val.title}
+              author={val.author_name && val.author_name[0]}
+              isbn={val.isbn && val.isbn[0]}
+              urlKey={val.key}
+              publishDate={val.first_publish_year}
+            />
+          </Box>
+        </Grid>
+      ))}
+    </Grid>
+  </>
   );
 };
 export default Recommendations;

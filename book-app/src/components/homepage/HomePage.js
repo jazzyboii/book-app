@@ -13,7 +13,7 @@ import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import Carousel from 'react-multi-carousel';
-import Display from "/Users/davidvincent/Desktop/book-app/book-app/src/components/bookPage/Display.js"; 
+//import Display from "/Users/davidvincent/Desktop/book-app/book-app/src/components/bookPage/Display.js"; 
 import { useState } from "react";
 import { useContext } from "react";
 import { AuthorContext } from "../../contexts/authorContext";
@@ -260,39 +260,7 @@ const HomePage = () => {
           </Toolbar>          
         </Container>
       </AppBar>
-      <Box
-        sx={{
-          width: 'auto',
-          height: '50vh',
-          backgroundColor: 'primary.dark',
-          marginTop: "2rem",
-        }}
-      >
-        <Typography variant="h4" sx={{marginTop:"2rem"}}>
-          Nozama
-        </Typography>
-        <Typography variant="h4" sx={{marginTop:"2rem"}}>
-           The finiest assortment of your favorite books for price of a $1
-        </Typography>
-      </Box>
-      <Typography
-        variant="h5"
-        noWrap
-        sx={{
-          mr: 2,
-          display: { xs: 'flex', md: 'flex' },
-          flexGrow: 1,
-          fontFamily: 'monospace',
-          fontWeight: 700,
-          letterSpacing: '.3rem',
-          color: 'inherit',
-          textDecoration: 'none',
-          marginTop:"2rem"
-        }}
-      >
-        Recommendations
-      </Typography>                 
-    
+ 
                      
     </>
   );

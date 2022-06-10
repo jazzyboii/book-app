@@ -6,7 +6,7 @@ import PaymentPage from "./components/ShoppingCart/PaymentPage";
 import Recommendations from "./Recommendations";
 // import {Button} from '@mui/material';
 import AuthorContextProvider from "./contexts/authorContext";
-import HomePage from "/Users/davidvincent/Desktop/book-app/book-app/src/components/homePage/HomePage.js";
+import HomePage from "./components/homepage/HomePage";
 import { ShoppingContext } from './contexts/shoppingContext';
 import { useContext, useEffect } from 'react'
 import DiscoverPage from './components/DiscoverPage'
