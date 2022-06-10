@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import ShoppingProvider from "./contexts/shoppingContext";
 import DescriptionContextProvider from "./contexts/descriptionContext";
 import AuthorContextProvider from "./contexts/authorContext";
+import AccessTokenProvider, { AccessTokenContext } from "./contexts/accessTokenContext";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -15,9 +16,11 @@ root.render(
     <ShoppingProvider>
       <AuthorContextProvider>
         <DescriptionContextProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <AccessTokenProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </AccessTokenProvider>
         </DescriptionContextProvider>
       </AuthorContextProvider>
     </ShoppingProvider>

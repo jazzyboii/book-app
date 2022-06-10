@@ -4,15 +4,17 @@ import { Routes, Route, Link } from "react-router-dom";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import PaymentPage from "./components/ShoppingCart/PaymentPage";
 // import {Button} from '@mui/material';
-import HomePage from "./components/homePage/HomePage";
-import { ShoppingContext } from "./contexts/shoppingContext";
-import { useContext, useEffect } from "react";
+import AuthorContextProvider from "./contexts/authorContext";
+import HomePage from "./components/homePage/homePage";
+import { ShoppingContext } from './contexts/shoppingContext';
+import { useContext, useEffect } from 'react'
+// import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Button } from "@mui/material";
 import AuthorSearch from "./components/bookPage/AuthorSearch";
 import BookSearch from "./components/bookPage/BookSearch";
 import GenreSearch from "./components/bookPage/GenreSearch";
-import DiscoverPage from "./components/DiscoverPage";
-import CarouselDisplay from "./components/homePage/CarouselDisplay";
-import CarouselBooks from "./components/homePage/CarouselBooks";
+import BestSellersPage from "./components/BestSellers";
+
 
 function App() {
   const { setCart } = useContext(ShoppingContext);
@@ -36,8 +38,8 @@ function App() {
     <div className="App">
       <HomePage />
       <Routes>
-        <Route path="/" element={<CarouselBooks />} />
         <Route path="/discover" element={<DiscoverPage />} />
+        <Route path="/best-sellers" element={<BestSellersPage />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />
         <Route path="/author-search" element={<AuthorSearch />} />
         <Route path="/title-search" element={<BookSearch />} />
