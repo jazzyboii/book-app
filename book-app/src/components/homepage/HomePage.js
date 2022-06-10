@@ -238,6 +238,7 @@ const HomePage = () => {
           width: 'auto',
           height: '50vh',
           backgroundColor: 'primary.dark',
+          marginTop: "2rem"
         }}
       />
       <Typography
@@ -274,19 +275,22 @@ const HomePage = () => {
           slidesToSlide={2}
           sliderClass=""            
         >        
-        {bookz && bookz.map((val, key) => 
-                <Grid item xs={12} sm={2}>
-                    <Box style = {{
-                        flex: '1',
-                        padding:'20',
-                        margin:'.25rem',
-                        border: '15px solid white'
-                    }}>
-                    <DiscoverPage name={val.title} author={val.author_name && val.author_name[0]} isbn={val.isbn && val.isbn[0]}/>
-                    </Box>
-                </Grid>
-            
-            )
+        {bookz && bookz.map((val, key) => {
+            if(key < 10){
+                  <Grid item xs={12} sm={2}>
+                      <Box style = {{
+                          flex: '1',
+                          padding:'20',
+                          margin:'.25rem',
+                          border: '15px solid white'
+                      }}>
+                      <DiscoverPage name={val.title} author={val.author_name && val.author_name[0]} isbn={val.isbn && val.isbn[0]}/>
+                      </Box>
+                  </Grid>
+            }else{
+              return;
+            }
+         })
         }          
       </Carousel>    
     </>
