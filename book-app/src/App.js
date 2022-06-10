@@ -5,7 +5,7 @@ import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import PaymentPage from "./components/ShoppingCart/PaymentPage";
 // import {Button} from '@mui/material';
 import AuthorContextProvider from "./contexts/authorContext";
-import HomePage from "./components/homepage/HomePage.js";
+import HomePage from "./components/homePage/HomePage.js";
 import { ShoppingContext } from './contexts/shoppingContext';
 import { useContext, useEffect } from 'react'
 import DiscoverPage from './components/DiscoverPage'
@@ -26,11 +26,13 @@ function App() {
         title: "Fantastic Mr. Fox",
         isbn: "9780140328721",
         amount: 3,
+        author: "Roald Dahl"
       },
       {
         title: "The Lord of The Rings",
         isbn: "0261102303",
         amount: 1,
+        author: "JRR Tolkien"
       },
     ]); // eslint-disable-next-line
   }, []);
@@ -39,7 +41,6 @@ function App() {
     <div className="App">
       <HomePage />
       <Routes>
-        <Route path="/discover" element={<DiscoverPage />} />
         <Route path="/best-sellers" element={<BestSellersPage />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />
         <Route path="/author-search" element={<AuthorSearch />} />

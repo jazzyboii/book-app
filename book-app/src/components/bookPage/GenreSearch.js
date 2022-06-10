@@ -34,7 +34,17 @@ function GenreSearch() {
         onChange={(e) => setGenre(e.target.value)}
       />
       <p>
-        <Button type="submit" variant="contained" onClick={handleClick}>
+        <Button
+          style={{
+            borderRadius: 20,
+            backgroundColor: "#ff8b10",
+            padding: "15px",
+            fontSize: "18px",
+          }}
+          type="submit"
+          variant="contained"
+          onClick={handleClick}
+        >
           Submit Subject
         </Button>
       </p>
@@ -48,8 +58,7 @@ function GenreSearch() {
                   padding: "20",
                   marginLeft: "auto",
                   marginRight: "auto",
-                  borderRadius: "20px"
-                  
+                  borderRadius: "20px",
                 }}
               >
                 <Display
