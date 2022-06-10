@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Button, Divider } from "@mui/material";
+import { ShoppingContext } from "../../contexts/shoppingContext";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -8,6 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import './orderBreakdown.css'
 
 export default function OrderBreakdown(props) {
+    const { setCart } = useContext(ShoppingContext);
     const [shippingCosts, setShippingCosts] = useState("");
     const [preTotal, setPreTotal] = useState("");
     const [taxes, setTaxes] = useState("");
@@ -59,6 +61,7 @@ export default function OrderBreakdown(props) {
 
     function handleCloseSuccess() {
         setOpenDialog(false);
+        setCart([]);
     }
 
 
@@ -93,7 +96,7 @@ export default function OrderBreakdown(props) {
                 <DialogActions>
                 <Button onClick={handleClose}>Cancel</Button>
                 <Button onClick={handleCloseSuccess} autoFocus color="success">
-                    Confirmed
+                    Confirm
                 </Button>
                 </DialogActions>
             </Dialog>
