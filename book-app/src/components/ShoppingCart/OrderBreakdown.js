@@ -39,7 +39,7 @@ export default function OrderBreakdown(props) {
         const varPostTotal = varPreTotal + varTaxes;
         setShippingCosts(varShippingCosts.toFixed(2));
         console.log(shippingCosts, " shipping costs is a ", typeof(shippingCosts))
-        setPreTotal(varPreTotal);
+        setPreTotal(varPreTotal.toFixed(2));
         console.log(preTotal, " pretotal is a ", typeof(preTotal))
         setTaxes(varTaxes.toFixed(2))
         console.log(taxes, " taxes is a ", typeof(taxes))
@@ -68,7 +68,7 @@ export default function OrderBreakdown(props) {
             <Divider/>
             <h4>Books: ${props.amount}.00</h4>
             <h4>Shipping Estimate: ${shippingCosts}</h4>
-            <h4>Total before Tax: ${preTotal}.00</h4>
+            <h4>Total before Tax: ${preTotal}</h4>
             <h4>Taxes: {taxes}</h4>
             <h3>Order Total: ${postTotal}</h3>
             <div className="orderButtonDiv">

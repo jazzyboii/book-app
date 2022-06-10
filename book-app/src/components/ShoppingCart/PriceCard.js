@@ -47,7 +47,7 @@ export default function PriceCard(props) {
                     </Typography>
                 </CardContent>
                 {props.data.map( (book) => <div key={book.title}>
-                    {book.amount>1?<p>{book.title} -  $1.00 x ({book.amount}) = ${book.amount}.00</p>:book.amount===1?<p>$1.00</p>:<></>}
+                    {book.amount>1?<p>{book.title} -  $1.00 x ({book.amount}) = ${book.amount}.00</p>:book.amount===1?<p>{book.title} - $1.00</p>:<></>}
                 </div>)}
                 <br></br>
                 <Divider>Total</Divider>
