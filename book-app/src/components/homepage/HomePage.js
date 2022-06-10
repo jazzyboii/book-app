@@ -1,20 +1,24 @@
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
 import {
   AppBar,
   Box,
   Toolbar,
   IconButton,
   Typography,
-  InputBase,
 } from "@mui/material";
 import { MenuItem, Menu } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import Carousel from 'react-multi-carousel';
+import Display from "/Users/davidvincent/Desktop/book-app/book-app/src/components/bookPage/Display.js"; 
+import { useState } from "react";
+import { useContext } from "react";
+import { AuthorContext } from "../../contexts/authorContext";
+import DiscoverPage from "../DiscoverPage";
+import Grid from '@mui/material/Grid';
 
 const pages = [
   "Best Sellers",
@@ -27,9 +31,50 @@ const pages = [
 const HomePage = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [titles, setTitles] = useState([]);
+  const [keys, setKeys] = useState([]);
+  const [ bookz, setBookz ] = useState([]);
+  const bookTitles = [];
 
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+      slidesToSlide: 3
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+      slidesToSlide: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 720 },
+      items: 3,
+      slidesToSlide: 2
+    },
+    mobile: {
+      breakpoint: { max: 720, min: 0 },
+      items: 1,
+      slidesToSlide: 1
+    }
+  };
+
+  const urlKeys = [];
+  const booksDiscovery = [];
+
+  fetch(`http://openlibrary.org/search.json?author=david+ross`)
+    .then((res) => res.json())
+    .then((data) => {
+      data.docs.forEach((e) => {
+        urlKeys.push(e.key + ".json");
+        booksDiscovery.push(e);
+        console.log(e.first_publish_year);
+      });
+      setBookz(booksDiscovery);
+      setKeys(urlKeys);
+    })
+    .catch((err) => console.log(err));
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -42,45 +87,8 @@ const HomePage = () => {
   };
   const navigate = useNavigate();
 
-  const Search = styled("div")(({ theme }) => ({
-    position: "sticky",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(1),
-    marginLeft: 0,
-    width: "auto",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-  }));
 
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }));
 
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("md")]: {
-        width: "20ch",
-      },
-    },
-  }));
 
   return (
     <>
@@ -249,9 +257,43 @@ const HomePage = () => {
                 Shopping Cart
               </Button>
             </Box>
-          </Toolbar>
+          </Toolbar>          
         </Container>
       </AppBar>
+      <Box
+        sx={{
+          width: 'auto',
+          height: '50vh',
+          backgroundColor: 'primary.dark',
+          marginTop: "2rem",
+        }}
+      >
+        <Typography variant="h4" sx={{marginTop:"2rem"}}>
+          Nozama
+        </Typography>
+        <Typography variant="h4" sx={{marginTop:"2rem"}}>
+           The finiest assortment of your favorite books for price of a $1
+        </Typography>
+      </Box>
+      <Typography
+        variant="h5"
+        noWrap
+        sx={{
+          mr: 2,
+          display: { xs: 'flex', md: 'flex' },
+          flexGrow: 1,
+          fontFamily: 'monospace',
+          fontWeight: 700,
+          letterSpacing: '.3rem',
+          color: 'inherit',
+          textDecoration: 'none',
+          marginTop:"2rem"
+        }}
+      >
+        Recommendations
+      </Typography>                 
+    
+                     
     </>
   );
 };

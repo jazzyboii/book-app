@@ -3,9 +3,10 @@ import { Routes, Route, Link } from "react-router-dom";
 // import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import PaymentPage from "./components/ShoppingCart/PaymentPage";
+import Recommendations from "./Recommendations";
 // import {Button} from '@mui/material';
 import AuthorContextProvider from "./contexts/authorContext";
-import HomePage from "./components/homepage/HomePage.js";
+import HomePage from "/Users/davidvincent/Desktop/book-app/book-app/src/components/homePage/HomePage.js";
 import { ShoppingContext } from './contexts/shoppingContext';
 import { useContext, useEffect } from 'react'
 import DiscoverPage from './components/DiscoverPage'
@@ -15,6 +16,7 @@ import AuthorSearch from "./components/bookPage/AuthorSearch";
 import BookSearch from "./components/bookPage/BookSearch";
 import GenreSearch from "./components/bookPage/GenreSearch";
 import BestSellersPage from "./components/BestSellers";
+
 
 
 function App() {
@@ -45,6 +47,7 @@ function App() {
         <Route path="/title-search" element={<BookSearch />} />
         <Route path="/genre-search" element={<GenreSearch />} />
         <Route path="/payment-page" element={<PaymentPage />} />
+        <Route path="/" element={<Recommendations />} />
       </Routes>
     </div>
   );
