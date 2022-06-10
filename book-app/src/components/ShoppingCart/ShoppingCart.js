@@ -1,7 +1,17 @@
 import { useEffect, useState, useContext } from "react";
-import {Card, CardActionArea, CardContent, CardMedia, CardActions, Typography, Box, Button, IconButton} from "@mui/material";
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  CardActions,
+  Typography,
+  Box,
+  Button,
+  IconButton,
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -9,7 +19,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { ShoppingContext } from "../../contexts/shoppingContext";
 import PriceCard from "./PriceCard";
-import './shoppingCart.css';
+import "./shoppingCart.css";
 // import TextField from '@mui/material/TextField';
 // import BookCard from "./BookCard";
 
@@ -20,45 +30,45 @@ export default function ShoppingCart() {
   const [wantsToDelete, setWantsToDelete] = useState(false);
   const [reloadData, setReloadData] = useState(true);
 
-    // console.log("shopping list: ", cart)
-   
-    useEffect( () => {
-        if(reloadData) {
-            let array = [];
-            array = cart;
-            for (let i = 0; i<array.length; i++) {
-                for (let j = array.length - 1; j>=0; j--) {
-                  if (i === j) {
-                    break;
-                  }
-                  if(array[i].title === array[j].title){
-                      array[i].amount = array[i].amount + array[j].amount;
-                      array.splice(j, 1);
-                  }
-                }
-              }
-            setArray(array);
-            setReloadData(false);
-            // for (let i = 0; i<array.length; i++) {
-            //     if (array[i].amount === 0) {
-            //         deleteBook(array[i]);
-            //     }
-            // }
+  // console.log("shopping list: ", cart)
+
+  useEffect(() => {
+    if (reloadData) {
+      let array = [];
+      array = cart;
+      for (let i = 0; i < array.length; i++) {
+        for (let j = array.length - 1; j >= 0; j--) {
+          if (i === j) {
+            break;
+          }
+          if (array[i].title === array[j].title) {
+            array[i].amount = array[i].amount + array[j].amount;
+            array.splice(j, 1);
+          }
         }
-    }, [reloadData, cart, array])
-   
-    // useEffect( () => {
-    //         if (reloadData) {
-    //             fetch("http://localhost:9000/shopping/info")
-    //             .then((res) => res.json())
-    //             .then((text) => {
-    //                 console.log("ShoppingCart: ", text)
-    //                 setCart(text.result)
-    //                 })
-    //                 .then(setReloadData(false))
-    //             .catch((err) => console.log(err))
-    //             }
-    //     }, [reloadData])
+      }
+      setArray(array);
+      setReloadData(false);
+      // for (let i = 0; i<array.length; i++) {
+      //     if (array[i].amount === 0) {
+      //         deleteBook(array[i]);
+      //     }
+      // }
+    }
+  }, [reloadData, cart, array]);
+
+  // useEffect( () => {
+  //         if (reloadData) {
+  //             fetch("http://localhost:9000/shopping/info")
+  //             .then((res) => res.json())
+  //             .then((text) => {
+  //                 console.log("ShoppingCart: ", text)
+  //                 setCart(text.result)
+  //                 })
+  //                 .then(setReloadData(false))
+  //             .catch((err) => console.log(err))
+  //             }
+  //     }, [reloadData])
   // console.log("shopping list: ", cart);
 
   // useEffect( () => {
@@ -100,11 +110,11 @@ export default function ShoppingCart() {
 
   return (
     <>
-    <h1>Shopping Cart</h1>
+      <h1>Shopping Cart</h1>
 
-    <div className="leftSide">
-    {array &&
-        array.map((book) => (
+      <div className="leftSide">
+        {array &&
+          array.map((book) => (
             <div className="product" key={book.id}>
               <Card
                 raised={true}
@@ -145,11 +155,14 @@ export default function ShoppingCart() {
                       <br></br>
 
                       {book.amount > 1 ? (
-                        <IconButton aria-label="removeCopy" onClick={() => {
-                          editAmount(book, -1);
-                        }}>
+                        <IconButton
+                          aria-label="removeCopy"
+                          onClick={() => {
+                            editAmount(book, -1);
+                          }}
+                        >
                           <RemoveIcon></RemoveIcon>
-                      </IconButton>
+                        </IconButton>
                       ) : (
                         <></>
                       )}
@@ -158,41 +171,47 @@ export default function ShoppingCart() {
                         variant="body"
                         fontSize={16}
                         color="text.secondary"
-                        sx={{ fontWeight: "bold"}}
+                        sx={{ fontWeight: "bold" }}
                       >
-                      {book.amount}
+                        {book.amount}
                       </Typography>
 
-                      <IconButton aria-label="addCopy" onClick={() => {
+                      <IconButton
+                        aria-label="addCopy"
+                        onClick={() => {
                           editAmount(book, 1);
-                        }}>
-                          <AddIcon></AddIcon>
+                        }}
+                      >
+                        <AddIcon></AddIcon>
                       </IconButton>
-                
                     </CardContent>
 
                     <CardActions>
-                    <div className="deleteButtonDiv">
-                      <Button size="small" variant="contained" color="error" className="deleteButton"
-                        onClick={() => {
-                          handleOpen();
-                          setDeleteId(book);
-                        }}
-                      >
-                        {" "}
-                        Delete{" "}
-                      </Button>
-                    </div>
+                      <div className="deleteButtonDiv">
+                        <Button
+                          size="small"
+                          variant="contained"
+                          color="error"
+                          className="deleteButton"
+                          onClick={() => {
+                            handleOpen();
+                            setDeleteId(book);
+                          }}
+                        >
+                          {" "}
+                          Delete{" "}
+                        </Button>
+                      </div>
                     </CardActions>
                   </Box>
                 </CardActionArea>
               </Card>
             </div>
-        ))}
-    </div>
-      
+          ))}
+      </div>
+
       <div className="priceCard">
-        <PriceCard data={array}/>
+        <PriceCard data={array} />
       </div>
 
       <Dialog

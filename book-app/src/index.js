@@ -9,6 +9,7 @@ import DescriptionContextProvider from "./contexts/descriptionContext";
 import AuthorContextProvider from "./contexts/authorContext";
 import AccessTokenProvider, { AccessTokenContext } from "./contexts/accessTokenContext";
 
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
