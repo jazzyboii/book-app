@@ -69,7 +69,7 @@ export default function OrderBreakdown(props) {
             <h4>Books: ${props.amount}.00</h4>
             <h4>Shipping Estimate: ${shippingCosts}</h4>
             <h4>Total before Tax: ${preTotal}</h4>
-            <h4>Taxes: {taxes}</h4>
+            <h4>Taxes: ${taxes}</h4>
             <h3>Order Total: ${postTotal}</h3>
             <div className="orderButtonDiv">
                 {props.creditSubmit && props.locationSubmit?!orderPlaced?<Button className="orderButton" variant="contained" onClick={placeOrder}>Place Your Order</Button>:<Button className="orderButton" variant="contained" disabled onClick={placeOrder}>Place Your Order</Button>:<Button className="orderButton" variant="contained" disabled onClick={placeOrder}>Place Your Order</Button>}
