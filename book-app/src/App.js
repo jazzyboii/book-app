@@ -25,11 +25,13 @@ function App() {
         title: "Fantastic Mr. Fox",
         isbn: "9780140328721",
         amount: 3,
+        author: "Roald Dahl"
       },
       {
         title: "The Lord of The Rings",
         isbn: "0261102303",
         amount: 1,
+        author: "JRR Tolkien"
       },
     ]); // eslint-disable-next-line
   }, []);
