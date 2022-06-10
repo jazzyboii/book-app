@@ -18,22 +18,22 @@ import BestSellersPage from "./components/BestSellers";
 
 
 function App() {
-  const { setCart } = useContext(ShoppingContext);
+  // const { setCart } = useContext(ShoppingContext);
 
-  useEffect(() => {
-    setCart([
-      {
-        title: "Fantastic Mr. Fox",
-        isbn: "9780140328721",
-        amount: 3,
-      },
-      {
-        title: "The Lord of The Rings",
-        isbn: "0261102303",
-        amount: 1,
-      },
-    ]); // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   setCart([
+  //     {
+  //       title: "Fantastic Mr. Fox",
+  //       isbn: "9780140328721",
+  //       amount: 3,
+  //     },
+  //     {
+  //       title: "The Lord of The Rings",
+  //       isbn: "0261102303",
+  //       amount: 1,
+  //     },
+  //   ]); // eslint-disable-next-line
+  // }, []);
 
   return (
     <div className="App">
