@@ -16,7 +16,13 @@ import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 
-const pages = ["Discover", "Book Page", "Shopping Cart"];
+const pages = [
+  "Best Sellers",
+  "Search by Title",
+  "Search by Author",
+  "Search by Subject",
+  "Shopping Cart",
+];
 
 const HomePage = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -78,7 +84,12 @@ const HomePage = () => {
 
   return (
     <>
-      <AppBar position="static" sx={{ bgcolor: "#816C61" }}>
+      <AppBar
+        position="static"
+        sx={{
+          background: "linear-gradient(to right bottom, #ff8b01, #eb1c01)",
+        }}
+      >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
@@ -155,31 +166,76 @@ const HomePage = () => {
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               <Button
                 onClick={() => navigate("/best-sellers")}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{
+                  mx: 2,
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  fontSize: "20px",
+                  borderBlockColor: "white",
+                  border: "2px white solid",
+                }}
+                variant="outlined"
               >
                 Best Sellers
               </Button>
               <Button
                 onClick={() => navigate("/author-search")}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{
+                  mx: 2,
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  fontSize: "20px",
+                  borderBlockColor: "white",
+                  border: "2px white solid",
+                }}
+                variant="outlined"
               >
                 Search by Author
               </Button>
               <Button
                 onClick={() => navigate("/title-search")}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{
+                  mx: 2,
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  fontSize: "20px",
+                  borderBlockColor: "white",
+                  border: "2px white solid",
+                }}
+                variant="outlined"
               >
                 Search by Title
               </Button>
               <Button
                 onClick={() => navigate("/genre-search")}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{
+                  mx: 2,
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  fontSize: "20px",
+                  borderBlockColor: "white",
+                  border: "2px white solid",
+                }}
+                variant="outlined"
               >
                 Search by Subject
               </Button>
               <Button
                 onClick={() => navigate("/shopping-cart")}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{
+                  mx: 2,
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  fontSize: "20px",
+                  borderBlockColor: "white",
+                  border: "2px white solid",
+                }}
+                variant="outlined"
               >
                 Shopping Cart
               </Button>
