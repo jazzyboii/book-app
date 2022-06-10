@@ -5,7 +5,7 @@ import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import PaymentPage from "./components/ShoppingCart/PaymentPage";
 // import {Button} from '@mui/material';
 import AuthorContextProvider from "./contexts/authorContext";
-import HomePage from "./components/homepage/HomePage.js";
+import HomePage from "./components/homePage/HomePage.js";
 import { ShoppingContext } from './contexts/shoppingContext';
 import { useContext, useEffect } from 'react'
 // import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -40,7 +40,6 @@ function App() {
     <div className="App">
       <HomePage />
       <Routes>
-        <Route path="/discover" element={<DiscoverPage />} />
         <Route path="/best-sellers" element={<BestSellersPage />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />
         <Route path="/author-search" element={<AuthorSearch />} />
