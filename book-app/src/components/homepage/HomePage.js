@@ -69,7 +69,7 @@ const HomePage = () => {
       data.docs.forEach((e) => {
         urlKeys.push(e.key + ".json");
         booksDiscovery.push(e);
-        console.log(e.first_publish_year);
+        // console.log(e.first_publish_year);
       });
       setBookz(booksDiscovery);
       setKeys(urlKeys);
