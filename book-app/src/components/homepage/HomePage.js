@@ -160,6 +160,12 @@ const HomePage = () => {
                 Discover
               </Button>
               <Button
+                onClick={() => navigate("/best-sellers")}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Best Sellers
+              </Button>
+              <Button
                 onClick={() => navigate("/author-search")}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
