@@ -1,25 +1,21 @@
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
 import {
   AppBar,
   Box,
   Toolbar,
   IconButton,
   Typography,
-  InputBase,
 } from "@mui/material";
 import { MenuItem, Menu } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import Carousel from 'react-multi-carousel';
-import { ShoppingContext } from "../../contexts/shoppingContext";
+
 import { useState } from "react";
-import { useEffect } from "react";
-import { useRef, useContext } from "react";
+import { useContext } from "react";
 import { AuthorContext } from "../../contexts/authorContext";
 import DiscoverPage from "../DiscoverPage";
 import Grid from '@mui/material/Grid';
@@ -28,17 +24,14 @@ const pages = ['Discover', 'Book Page', 'Shopping Cart'];
 
 const HomePage = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [titles, setTitles] = useState([]);
   const [keys, setKeys] = useState([]);
-  const [isbn, setIsbn] = useState([]);
   const [ bookz, setBookz ] = useState([]);
-  const { first, setFirst, last, setLast } = useContext(AuthorContext);
   const bookTitles = [];
   const urlKeys = [];
-  const bookDesc = [];
   const booksDiscovery = [];
+
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -74,46 +67,6 @@ const HomePage = () => {
     setAnchorElNav(null);
   };
   const navigate = useNavigate();
-
-  const Search = styled("div")(({ theme }) => ({
-    position: "sticky",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(1),
-    marginLeft: 0,
-    width: "auto",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-  }));
-
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }));
-
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("md")]: {
-        width: "20ch",
-      },
-    },
-  }));
 
   fetch(`http://openlibrary.org/search.json?author=david+ross`)
   .then((res) => res.json())
@@ -252,7 +205,14 @@ const HomePage = () => {
           backgroundColor: 'primary.dark',
           marginTop: "2rem"
         }}
-      />
+      >
+        <Typography variant="h1" sx={{marginTop:"2rem"}}>
+          Nozama
+        </Typography>
+        <Typography variant="h1" sx={{marginTop:"2rem"}}>
+           The finiest assortment of your favorite books for price of a $1
+        </Typography>
+      </Box>
       <Typography
         variant="h5"
         noWrap
@@ -267,6 +227,7 @@ const HomePage = () => {
           letterSpacing: '.3rem',
           color: 'inherit',
           textDecoration: 'none',
+          marginTop:"2rem"
         }}
       >
         Recommendations
