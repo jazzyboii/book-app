@@ -39,7 +39,6 @@ function App() {
     <div className="App">
       <HomePage />
       <Routes>
-        <Route path="/discover" element={<DiscoverPage />} />
         <Route path="/best-sellers" element={<BestSellersPage />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />
         <Route path="/author-search" element={<AuthorSearch />} />

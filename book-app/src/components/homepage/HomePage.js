@@ -154,12 +154,6 @@ const HomePage = () => {
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               <Button
-                onClick={() => navigate("/discover")}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                Discover
-              </Button>
-              <Button
                 onClick={() => navigate("/best-sellers")}
                 sx={{ my: 2, color: "white", display: "block" }}
               >

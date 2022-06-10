@@ -14,7 +14,7 @@ function AuthorSearch() {
   const [bookz, setBookz] = useState([]);
   const { first, setFirst, last, setLast } = useContext(AuthorContext);
   const { keys, setKeys } = useContext(DescriptionContext);
-  const { cart } = useContext(ShoppingContext)
+  const { cart } = useContext(ShoppingContext);
 
   const handleClick = () => {
     const urlKeys = [];
@@ -26,7 +26,7 @@ function AuthorSearch() {
         data.docs.forEach((e) => {
           urlKeys.push(e.key + ".json");
           booksDiscovery.push(e);
-          console.log(e.first_publish_year)
+          console.log(e.first_publish_year);
         });
         setBookz(booksDiscovery);
         setKeys(urlKeys);
@@ -36,15 +36,13 @@ function AuthorSearch() {
 
   return (
     <div>
-      <h1>
-        Search by Author
-      </h1>
+      <h1>Search by Author</h1>
       <TextField
         id="filled-basic"
         label="First Name"
         variant="filled"
         required
-        sx={{ m: 1}}
+        sx={{ m: 1 }}
         onChange={(e) => setFirst(e.target.value)}
       />
       <TextField
@@ -56,7 +54,17 @@ function AuthorSearch() {
         onChange={(e) => setLast(e.target.value)}
       />
       <p>
-        <Button type="submit" variant="contained" onClick={handleClick}>
+        <Button
+          style={{
+            borderRadius: 20,
+            backgroundColor: "#ff8b10",
+            padding: "15px",
+            fontSize: "18px",
+          }}
+          type="submit"
+          variant="contained"
+          onClick={handleClick}
+        >
           Submit Author
         </Button>
       </p>
