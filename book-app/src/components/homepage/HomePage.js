@@ -206,10 +206,10 @@ const HomePage = () => {
           marginTop: "2rem"
         }}
       >
-        <Typography variant="h1" sx={{marginTop:"2rem"}}>
+        <Typography variant="h4" sx={{marginTop:"2rem"}}>
           Nozama
         </Typography>
-        <Typography variant="h1" sx={{marginTop:"2rem"}}>
+        <Typography variant="h4" sx={{marginTop:"2rem"}}>
            The finiest assortment of your favorite books for price of a $1
         </Typography>
       </Box>
