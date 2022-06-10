@@ -55,8 +55,10 @@ export default function PaymentPage() {
         setData(cart)
 
         let sum = 0;
-        for (let i = 0; i<data.length; i++) {
-            sum += data[i].amount;
+        if (data!==null) {
+            for (let i = 0; i<data.length; i++) {
+                sum += data[i].amount;
+            }
         }
         setAmount(sum);
     }, [cart, data])

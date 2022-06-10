@@ -17,14 +17,18 @@ function Display(props) {
 
   const addCart = (props) => {
     console.log(cart);
-    setCart([
-      ...cart,
-      {
-        title: name,
-        isbn: isbn,
-        amount: 1,
-      },
-    ]);
+    if (cart === null) {
+      setCart([{ title: name, isbn: isbn, amount: 1 }]);
+    } else {
+      setCart([
+        ...cart,
+        {
+          title: name,
+          isbn: isbn,
+          amount: 1,
+        },
+      ]);
+    }
     var text = name + " was added to cart!";
     alert(text);
   };
@@ -40,10 +44,10 @@ function Display(props) {
           maxWidth: 300,
           minHeight: 400,
           ":hover": {
-            boxShadow: 30,
+            boxShadow: 40,
           },
           margin: "auto",
-          borderRadius: "20px"
+          borderRadius: "20px",
         }}
       >
         <CardMedia
@@ -65,7 +69,15 @@ function Display(props) {
           <Button
             variant="contained"
             value={name}
-            sx={{ m: 2 }}
+            sx={{
+              m: 1,
+            }}
+            style={{
+              borderRadius: 20,
+              background: "linear-gradient(to right bottom, #ff8b01, #eb1c01)",
+              padding: "15px",
+              fontSize: "15px",
+            }}
             onClick={() => addCart({ name }, { isbn })}
           >
             Add to cart

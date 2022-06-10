@@ -35,7 +35,17 @@ function BookSearch() {
         onChange={(e) => setTitle(e.target.value)}
       />
       <p>
-        <Button type="submit" variant="contained" onClick={handleClick}>
+        <Button
+          style={{
+            borderRadius: 20,
+            backgroundColor: "#ff8b10",
+            padding: "15px",
+            fontSize: "18px",
+          }}
+          type="submit"
+          variant="contained"
+          onClick={handleClick}
+        >
           Submit Title
         </Button>
       </p>
@@ -48,6 +58,9 @@ function BookSearch() {
                   flex: "1",
                   padding: "20",
                   margin: ".25rem",
+                  ":hover": {
+                    boxShadow: 40,
+                  },
                 }}
               >
                 <Display

@@ -36,14 +36,16 @@ export default function ShoppingCart() {
     if (reloadData) {
       let array = [];
       array = cart;
-      for (let i = 0; i < array.length; i++) {
-        for (let j = array.length - 1; j >= 0; j--) {
-          if (i === j) {
-            break;
-          }
-          if (array[i].title === array[j].title) {
-            array[i].amount = array[i].amount + array[j].amount;
-            array.splice(j, 1);
+      if(array !== null) {
+        for (let i = 0; i < array.length; i++) {
+          for (let j = array.length - 1; j >= 0; j--) {
+            if (i === j) {
+              break;
+            }
+            if (array[i].title === array[j].title) {
+              array[i].amount = array[i].amount + array[j].amount;
+              array.splice(j, 1);
+            }
           }
         }
       }

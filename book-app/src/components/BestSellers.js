@@ -64,6 +64,8 @@ function BestSellersPage() {
   console.log(bestsellers);
   return (
     <div>
+      <br></br>
+      <br></br>
       <Grid container>
         {bestsellers.length > 0 &&
           bestsellers.map((val, key) => (

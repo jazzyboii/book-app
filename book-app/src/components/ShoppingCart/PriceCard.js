@@ -16,15 +16,11 @@ import './priceCard.css';
 export default function PriceCard(props) {
     const navigate = useNavigate();
     let amount = 0;
-    // const [wantsToPay, setWantsToPay] = useState(false);
-    // const array = [];
-    for (let i = 0; i<props.data.length; i++) {
-        amount += props.data[i].amount;
-        // for (let j = 0; j<props.data[i].amount; j++) {
-        //     array.push(props.data[i].title)
-        // }
+    if (props.data !== null) {
+        for (let i = 0; i<props.data.length; i++) {
+            amount += props.data[i].amount;
+        }
     }
-    // const array = new Array(amount).fill(0);
     
     function goToPaymentPage() {
         navigate('/payment-page');
@@ -46,9 +42,9 @@ export default function PriceCard(props) {
                         Subtotal - {amount} items
                     </Typography>
                 </CardContent>
-                {props.data.map( (book) => <div key={book.title}>
-                    {book.amount>1?<p>{book.title} -  $1.00 x ({book.amount}) = ${book.amount}.00</p>:book.amount===1?<p>$1.00</p>:<></>}
-                </div>)}
+                {props.data!==null?props.data.map( (book) => <div key={book.title}>
+                    {book.amount>1?<p>{book.title} -  $1.00 x ({book.amount}) = ${book.amount}.00</p>:book.amount===1?<p>{book.title} - $1.00</p>:<></>}
+                </div>):<></>}
                 <br></br>
                 <Divider>Total</Divider>
                 
