@@ -3,6 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 // import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import PaymentPage from "./components/ShoppingCart/PaymentPage";
+import Recommendations from "./Recommendations";
 // import {Button} from '@mui/material';
 import AuthorContextProvider from "./contexts/authorContext";
 import HomePage from "/Users/davidvincent/Desktop/book-app/book-app/src/components/homePage/HomePage.js";
@@ -46,6 +47,7 @@ function App() {
         <Route path="/title-search" element={<BookSearch />} />
         <Route path="/genre-search" element={<GenreSearch />} />
         <Route path="/payment-page" element={<PaymentPage />} />
+        <Route path="/" element={<Recommendations />} />
       </Routes>
     </div>
   );

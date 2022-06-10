@@ -13,13 +13,12 @@ import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import Carousel from 'react-multi-carousel';
-
+import Display from "/Users/davidvincent/Desktop/book-app/book-app/src/components/bookPage/Display.js"; 
 import { useState } from "react";
 import { useContext } from "react";
 import { AuthorContext } from "../../contexts/authorContext";
 import DiscoverPage from "../DiscoverPage";
 import Grid from '@mui/material/Grid';
-const pages = ['Discover', 'Book Page', 'Shopping Cart'];
 
 const pages = [
   "Best Sellers",
@@ -36,8 +35,6 @@ const HomePage = () => {
   const [keys, setKeys] = useState([]);
   const [ bookz, setBookz ] = useState([]);
   const bookTitles = [];
-  const urlKeys = [];
-  const booksDiscovery = [];
 
   const responsive = {
     superLargeDesktop: {
@@ -63,6 +60,21 @@ const HomePage = () => {
     }
   };
 
+  const urlKeys = [];
+  const booksDiscovery = [];
+
+  fetch(`http://openlibrary.org/search.json?author=david+ross`)
+    .then((res) => res.json())
+    .then((data) => {
+      data.docs.forEach((e) => {
+        urlKeys.push(e.key + ".json");
+        booksDiscovery.push(e);
+        console.log(e.first_publish_year);
+      });
+      setBookz(booksDiscovery);
+      setKeys(urlKeys);
+    })
+    .catch((err) => console.log(err));
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -75,18 +87,8 @@ const HomePage = () => {
   };
   const navigate = useNavigate();
 
-  fetch(`http://openlibrary.org/search.json?author=david+ross`)
-  .then((res) => res.json())
-  .then((data) => {
-    data.docs.forEach((e) => {
-      bookTitles.push(e.title);
-      urlKeys.push(e.key + ".json");
-      booksDiscovery.push(e);
-    });
-    setBookz(booksDiscovery);
-    setTitles(bookTitles);
-    setKeys(urlKeys);
-  });
+
+
 
   return (
     <>
@@ -255,7 +257,7 @@ const HomePage = () => {
           width: 'auto',
           height: '50vh',
           backgroundColor: 'primary.dark',
-          marginTop: "2rem"
+          marginTop: "2rem",
         }}
       >
         <Typography variant="h4" sx={{marginTop:"2rem"}}>
@@ -268,8 +270,6 @@ const HomePage = () => {
       <Typography
         variant="h5"
         noWrap
-        component="a"
-        href=""
         sx={{
           mr: 2,
           display: { xs: 'flex', md: 'flex' },
@@ -283,41 +283,9 @@ const HomePage = () => {
         }}
       >
         Recommendations
-      </Typography>
-      <Carousel
-          swipeable={true}
-          draggable={true}
-          showDots={false}
-          responsive={responsive}
-          ssr={true} // means to render carousel on server-side.
-          infinite={false}
-          keyBoardControl={true}
-          customTransition="all .5"
-          transitionDuration={0}
-          containerClass="carousel-container"
-          dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px"
-          slidesToSlide={2}
-          sliderClass=""            
-        >        
-        {bookz && bookz.map((val, key) => {
-            if(key < 10){
-                  <Grid item xs={12} sm={2}>
-                      <Box style = {{
-                          flex: '1',
-                          padding:'20',
-                          margin:'.25rem',
-                          border: '15px solid white'
-                      }}>
-                      <DiscoverPage name={val.title} author={val.author_name && val.author_name[0]} isbn={val.isbn && val.isbn[0]}/>
-                      </Box>
-                  </Grid>
-            }else{
-              return;
-            }
-         })
-        }          
-      </Carousel>    
+      </Typography>                 
+    
+                     
     </>
   );
 };
