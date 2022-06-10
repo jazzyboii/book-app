@@ -5,7 +5,7 @@ import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import PaymentPage from "./components/ShoppingCart/PaymentPage";
 // import {Button} from '@mui/material';
 import AuthorContextProvider from "./contexts/authorContext";
-import HomePage from "./components/homepage/HomePage.js";
+import HomePage from "./components/homePage/HomePage.js";
 import { ShoppingContext } from './contexts/shoppingContext';
 import { useContext, useEffect } from 'react'
 import DiscoverPage from './components/DiscoverPage'
