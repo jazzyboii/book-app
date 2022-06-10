@@ -8,6 +8,7 @@ import AuthorContextProvider from "./contexts/authorContext";
 import HomePage from "./components/homepage/HomePage.js";
 import { ShoppingContext } from './contexts/shoppingContext';
 import { useContext, useEffect } from 'react'
+import DiscoverPage from './components/DiscoverPage'
 // import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Button } from "@mui/material";
 import AuthorSearch from "./components/bookPage/AuthorSearch";
