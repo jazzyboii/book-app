@@ -93,10 +93,6 @@ const HomePage = () => {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
@@ -107,6 +103,19 @@ const HomePage = () => {
                 color: "inherit",
                 textDecoration: "none",
               }}
+              variant={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                fontSize: 40,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+              noWrap
+              component="a"
+              href="/"
             >
               Nozama
             </Typography>
@@ -147,7 +156,6 @@ const HomePage = () => {
               </Menu>
             </Box>
             <Typography
-              variant="h5"
               noWrap
               component="a"
               href=""
