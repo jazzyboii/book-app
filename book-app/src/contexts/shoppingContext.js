@@ -1,9 +1,10 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 const ShoppingContext = createContext();
+const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"));
 
 const ShoppingProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(cartFromLocalStorage);
 
   const obj = {
     cart: cart,
