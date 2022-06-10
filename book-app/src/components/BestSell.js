@@ -31,6 +31,7 @@ import Fade from "@material-ui/core/Fade";
 import { useBlogTextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/blog";
 import { useOverShadowStyles } from "@mui-treasury/styles/shadow/over";
 import TextInfoContent from "@mui-treasury/components/content/textInfo";
+import { ShoppingContext } from "../contexts/shoppingContext";
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   actionArea: {
@@ -81,7 +82,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
     transition: "0.3s",
     boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
     position: "relative",
-    maxWidth: 600,
+    maxWidth: 700,
     marginLeft: "auto",
     overflow: "initial",
     background: "#ffffff",
@@ -98,8 +99,8 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
     width: "88%",
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: spacing(-3),
-    height: 110,
+    //marginTop: spacing(-3),
+    height: 470,
     paddingBottom: "48%",
     borderRadius: spacing(2),
     backgroundColor: "#fff",
@@ -125,11 +126,27 @@ function BestSell(props) {
     publisher,
   } = props;
 
+  const { cart, setCart } = useContext(ShoppingContext);
+
+  const addCart = (props) => {
+    console.log(cart);
+    setCart([
+      ...cart,
+      {
+        title: name,
+        isbn: isbn,
+        amount: 1,
+      },
+    ]);
+    var text = name + " was added to cart!";
+    alert(text);
+  };
+/*
   const showAlert = (e) => {
     var text = e.currentTarget.value + " was added to cart!";
     alert(text);
   };
-
+*/
   const styles = useStyles();
   const shadowStyles = useOverShadowStyles();
   const { button: buttonStyles, ...contentStyles } =
@@ -217,7 +234,7 @@ function BestSell(props) {
                     body={"ISBN: " + isbn}
                   />
                   <br></br>
-                  <Button className={buttonStyles} onClick={showAlert}>
+                  <Button className={buttonStyles} onClick={() => addCart({ name }, { isbn })}>
                     Add to cart
                   </Button>
                   <br></br>
